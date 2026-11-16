@@ -1,0 +1,10 @@
+# No video binaries in the repo (brief): produced video goes to Lovable Assets
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.wav
+*.mp3
+*.aac
+node_modules/
+.DS_Store

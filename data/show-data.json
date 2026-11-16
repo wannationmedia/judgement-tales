@@ -1,0 +1,201 @@
+{
+  "show": {
+    "title": "Judgement Tales",
+    "tagline": "Eternity is run like an office.",
+    "producedBy": "WANNATION MEDIA",
+    "legalEntity": "WANNATION HOLDINGS (PTY) LTD",
+    "registrationNo": "2026/463724/07",
+    "replacesCredit": "Owenation Media",
+    "format": "16:9 landscape (YouTube), 9:16 social cut-downs",
+    "runtimeTargetSec": 600,
+    "aesthetic": "retro public-access / cable-broadcast",
+    "toneReference": "American Dad look x Snatch dialogue rhythm",
+    "language": "English (dominant South African accent, international ensemble)",
+    "castingNote": "Casting choices (God Black, Jesus Chinese, Moses Iranian/Persian, Black Ottoman figures) are fictional creative interpretations for a comedy, not historical or factual claims about any group.",
+    "satireGuardrail": "Satire targets bureaucracy, power, management and individual characters, never a religious group, race or nationality as a group.",
+    "watermark": { "asset": "WANNATION logo", "position": "top-right", "motion": "slow continuous spin, ~20-30s per rotation", "onFinishedVideo": true, "onSitePlayer": true }
+  },
+  "statuses": {
+    "script": "Script + skit breakdown complete; no video.",
+    "art": "Scene artwork exists; no moving animation.",
+    "in-production": "Animation/voice/subtitles being produced; not finished.",
+    "teaser": "A short clip exists (labelled by real duration); full episode not done.",
+    "released": "Full episode rendered, reviewed and playable."
+  },
+  "episodes": [
+    {
+      "slug": "the-queue",
+      "number": 1,
+      "title": "The Queue",
+      "isPilot": true,
+      "status": "script",
+      "runtimeTargetSec": 600,
+      "logline": "Newly-dead Lwazi must survive Heaven's infinite processing line — and a black-market scheme to skip it.",
+      "synopsis": "Lwazi 'Lucky' Nkosi dies on an ordinary Tuesday and arrives at Heaven's reception to find eternity is run like Home Affairs. Armed with ticket 047, he gets tangled in a black-market scheme to skip The Queue — only to learn the fast-track leads somewhere worse: the Complaints Department.",
+      "cast": ["Lwazi Nkosi", "St. Peter", "Sven", "Nigel the Blagger", "The Sultan", "Brenda (Heavenly HR)", "Candice", "Moses (cameo)"],
+      "artwork": ["images/1.jpg"],
+      "skits": [
+        { "id": "A", "title": "Now Serving: 047", "setup": "Lwazi arrives; the queue is infinite; the board has read 046 for 400 years.", "action": "He meets Sven, a Viking who has queued since 862 AD and loves it; Candice hands him the E-1, the form to request the form.", "payoff": "A shadowy figure offers the Fast-Track.", "startSec": 55, "endSec": 210 },
+        { "id": "B", "title": "The Fast-Track", "setup": "Nigel pitches a golden Fast-Track Pass traded through a favour economy.", "action": "A Snatch-style caper: steal Sven's helmet for the Sultan to move the pass down the line.", "payoff": "The pass drops on the floor; thunder cracks at the mention of Brenda.", "startSec": 210, "endSec": 405 },
+        { "id": "C", "title": "Processing Error", "setup": "Brenda reveals the Fast-Track was a Renaissance pilot programme issued to everyone.", "action": "The pass fast-tracks you straight to the Complaints Department (Moses).", "payoff": "Lwazi's 047 is finally called — reception goes to lunch 'back in eternity'.", "startSec": 405, "endSec": 570 }
+      ],
+      "runningOrder": [
+        { "label": "Cold open — The Last Tuesday", "startSec": 0, "endSec": 35 },
+        { "label": "Main titles — WANNATION MEDIA card", "startSec": 35, "endSec": 55 },
+        { "label": "Skit A — Now Serving: 047", "startSec": 55, "endSec": 210 },
+        { "label": "Skit B — The Fast-Track", "startSec": 210, "endSec": 405 },
+        { "label": "Skit C — Processing Error", "startSec": 405, "endSec": 570 },
+        { "label": "Closing credits + button gag", "startSec": 570, "endSec": 600 }
+      ],
+      "socialCuts": [
+        { "platform": "tiktok", "label": "Take a ticket", "inSec": 55, "outSec": 95, "lengthSec": 40, "caption": "Heaven is just Home Affairs with better signage", "timingVerified": false },
+        { "platform": "reels", "label": "The Viking at 046", "inSec": 95, "outSec": 150, "lengthSec": 55, "caption": "He's been in the queue since 862 AD and he's THRIVING", "timingVerified": false },
+        { "platform": "reels", "label": "The Fast-Track scheme", "inSec": 210, "outSec": 280, "lengthSec": 70, "caption": "Don't say Brenda's name in the queue", "timingVerified": false },
+        { "platform": "shorts", "label": "The Sultan wants the helmet", "inSec": 280, "outSec": 330, "lengthSec": 50, "caption": "The Sultan does not queue. The Sultan visits.", "timingVerified": false },
+        { "platform": "reels", "label": "Processing error (twist)", "inSec": 405, "outSec": 470, "lengthSec": 65, "caption": "I died to escape admin. Admin followed me.", "timingVerified": false },
+        { "platform": "shorts", "label": "Gone to lunch (button)", "inSec": 540, "outSec": 570, "lengthSec": 30, "caption": "They finally called my number. Then this happened.", "timingVerified": false }
+      ],
+      "video": null
+    },
+    {
+      "slug": "orientation-day",
+      "number": 2,
+      "title": "Orientation Day",
+      "status": "script",
+      "runtimeTargetSec": 600,
+      "logline": "Jesus runs Heaven's corporate onboarding; Lwazi just wants the Wi-Fi password.",
+      "synopsis": "A mandatory onboarding where every question is 'parked', the icebreaker becomes a survival caper, and the entire exercise exists to withhold one thing: the Wi-Fi password.",
+      "cast": ["Lwazi Nkosi", "Jesus", "Moses", "Pearl", "Candice"],
+      "artwork": ["images/2.jpg"],
+      "skits": [
+        { "id": "A", "title": "Please Hold All Questions", "setup": "Mandatory onboarding; every question is 'a great question, let's park it'.", "action": "Moses heckles from the back row.", "payoff": "A harp is forced on Lwazi for mandatory recital." },
+        { "id": "B", "title": "Icebreaker", "setup": "'Name, how you died, a fun fact.'", "action": "Escalating one-upmanship across the international ensemble.", "payoff": "The recital looms." },
+        { "id": "C", "title": "The Password", "setup": "The onboarding exists to withhold the Wi-Fi password.", "action": "Jesus reveals the password is a parable.", "payoff": "Button: it's 'Password123!' and Moses knew all along." }
+      ],
+      "runningOrder": [
+        { "label": "Cold open", "startSec": 0, "endSec": 35 },
+        { "label": "Main titles", "startSec": 35, "endSec": 55 },
+        { "label": "Skit A", "startSec": 55, "endSec": 210 },
+        { "label": "Skit B", "startSec": 210, "endSec": 405 },
+        { "label": "Skit C", "startSec": 405, "endSec": 570 },
+        { "label": "Credits + button", "startSec": 570, "endSec": 600 }
+      ],
+      "socialCuts": [
+        { "platform": "tiktok", "label": "The Wi-Fi password is a parable", "inSec": 405, "outSec": 460, "lengthSec": 55, "caption": "Heaven's onboarding is just your worst job, forever.", "timingVerified": false }
+      ],
+      "video": null
+    },
+    {
+      "slug": "the-complaints-department",
+      "number": 3,
+      "title": "The Complaints Department",
+      "status": "script",
+      "runtimeTargetSec": 600,
+      "logline": "Moses has processed grievances for 4,000 years; one new complaint jams the system.",
+      "synopsis": "Moses's intake ritual meets a complaint so modern it has no precedent. A caper to find where new grievances get filed ends with the oldest management trick: mark it 'Resolved' without resolving it.",
+      "cast": ["Moses", "Brenda", "Lwazi Nkosi", "Jesus"],
+      "artwork": ["images/3.jpg"],
+      "skits": [
+        { "id": "A", "title": "Four Thousand Years of Notes", "setup": "Every complaint rhymes with every other, all in stone.", "action": "Lwazi comes to complain about the E-1 and is told to take a (stone) tablet.", "payoff": "A complaint with no precedent appears." },
+        { "id": "B", "title": "Escalation", "setup": "The new complaint breaks the filing logic.", "action": "A caper through HR, past the Sultan, to a Bronze-Age storeroom of unopened suggestion boxes.", "payoff": "No category fits." },
+        { "id": "C", "title": "Resolved", "setup": "The fix is to mark it 'Resolved' without resolving it.", "action": "Moses teaches Lwazi 'we've logged your feedback'.", "payoff": "Button: Complaint #4,001 — the complaints department." }
+      ],
+      "runningOrder": [
+        { "label": "Cold open", "startSec": 0, "endSec": 35 },
+        { "label": "Main titles", "startSec": 35, "endSec": 55 },
+        { "label": "Skit A", "startSec": 55, "endSec": 210 },
+        { "label": "Skit B", "startSec": 210, "endSec": 405 },
+        { "label": "Skit C", "startSec": 405, "endSec": 570 },
+        { "label": "Credits + button", "startSec": 570, "endSec": 600 }
+      ],
+      "socialCuts": [
+        { "platform": "tiktok", "label": "We've logged your feedback", "inSec": 405, "outSec": 460, "lengthSec": 55, "caption": "Moses has heard your complaint. In stone. In 2000 BC.", "timingVerified": false }
+      ],
+      "video": null
+    },
+    {
+      "slug": "downstairs-neighbours",
+      "number": 4,
+      "title": "Downstairs Neighbours",
+      "status": "script",
+      "runtimeTargetSec": 600,
+      "logline": "A Heavenly Neighbours Potluck with the folks from Below hinges on one shared elevator.",
+      "synopsis": "Heaven hosts a potluck to improve inter-departmental relations. Everyone brought the same dish, the Sultan 'visits' rather than queues, and the whole thing survives until Facilities sends a form.",
+      "cast": ["The Sultan", "Candice", "Lwazi Nkosi", "Nigel the Blagger", "Brenda"],
+      "artwork": ["images/4.jpg"],
+      "skits": [
+        { "id": "A", "title": "Mind the Gap", "setup": "One elevator shared between Up and Down; strict etiquette.", "action": "Choir vs. dignitaries' entrance-music battle.", "payoff": "The Sultan 'does not queue'." },
+        { "id": "B", "title": "The Potluck", "setup": "Everyone brought baklava.", "action": "A diplomatic caper over whose dish is canonical; Nigel trades snacks across the rope.", "payoff": "Both sides equally absurd, equally dignified." },
+        { "id": "C", "title": "Elevator's Out", "setup": "The elevator jams with Up and Down inside together.", "action": "They get along — until Brenda sends a form to report the incident.", "payoff": "Button: 'Next Potluck: pending E-1 approval.'" }
+      ],
+      "runningOrder": [
+        { "label": "Cold open", "startSec": 0, "endSec": 35 },
+        { "label": "Main titles", "startSec": 35, "endSec": 55 },
+        { "label": "Skit A", "startSec": 55, "endSec": 210 },
+        { "label": "Skit B", "startSec": 210, "endSec": 405 },
+        { "label": "Skit C", "startSec": 405, "endSec": 570 },
+        { "label": "Credits + button", "startSec": 570, "endSec": 600 }
+      ],
+      "socialCuts": [
+        { "platform": "reels", "label": "Baklava at the potluck", "inSec": 210, "outSec": 270, "lengthSec": 60, "caption": "When Heaven and Hell share ONE elevator", "timingVerified": false }
+      ],
+      "video": null
+    },
+    {
+      "slug": "build-a-brighter-eternity",
+      "number": 5,
+      "title": "Build a Brighter Eternity",
+      "status": "script",
+      "runtimeTargetSec": 600,
+      "logline": "Management rolls out a 'transformation initiative'; the harps get an upgrade nobody asked for.",
+      "synopsis": "A town-hall launches 'Eternity 2.0' with buzzwords as scripture and 'Harp Pro — now with a subscription'. A caper to keep the old harp alive ends in a quiet rollback to 'Eternity 2.0 (Classic)'.",
+      "cast": ["Pearl", "Angel middle-manager", "Jesus", "Lwazi Nkosi", "Brenda"],
+      "artwork": ["images/2.jpg"],
+      "skits": [
+        { "id": "A", "title": "The Rollout", "setup": "Town-hall announces Eternity 2.0; old harps decommissioned.", "action": "Buzzwords as scripture.", "payoff": "'Harp Pro — now with a subscription.'" },
+        { "id": "B", "title": "Change Management", "setup": "A compliance sweep for old harps.", "action": "A caper to smuggle the beloved old harp past compliance.", "payoff": "Everyone mouths support while quietly resisting." },
+        { "id": "C", "title": "Rollback", "setup": "The initiative collapses under its paperwork.", "action": "They quietly revert.", "payoff": "Button: 'Thank you for your patience during our transformation journey.'" }
+      ],
+      "runningOrder": [
+        { "label": "Cold open", "startSec": 0, "endSec": 35 },
+        { "label": "Main titles", "startSec": 35, "endSec": 55 },
+        { "label": "Skit A", "startSec": 55, "endSec": 210 },
+        { "label": "Skit B", "startSec": 210, "endSec": 405 },
+        { "label": "Skit C", "startSec": 405, "endSec": 570 },
+        { "label": "Credits + button", "startSec": 570, "endSec": 600 }
+      ],
+      "socialCuts": [
+        { "platform": "shorts", "label": "Harp Pro subscription", "inSec": 150, "outSec": 200, "lengthSec": 50, "caption": "Your harp now requires a monthly plan.", "timingVerified": false }
+      ],
+      "video": null
+    },
+    {
+      "slug": "the-numbers",
+      "number": 6,
+      "title": "The Numbers",
+      "status": "script",
+      "runtimeTargetSec": 600,
+      "logline": "The afterlife's quarterly stats don't add up, and someone has to answer to the Board.",
+      "synopsis": "The destinations pie chart has a quietly growing 'Pending' slice. A back-office caper finds the missing souls stuck in The Queue; the fix is to rename 'Pending' to 'In Transition' and change the chart colour.",
+      "cast": ["God", "Angel analyst", "Assistant", "Brenda", "Lwazi Nkosi"],
+      "artwork": ["images/5.jpg"],
+      "skits": [
+        { "id": "A", "title": "Quarterly Review", "setup": "The analyst presents the destinations pie chart.", "action": "The 'Pending' slice is growing.", "payoff": "Nobody wants to mention it to God." },
+        { "id": "B", "title": "The Discrepancy", "setup": "A back-office hunt for the missing souls.", "action": "They're all stuck in The Queue; the process was wrong, not the numbers.", "payoff": "A race to reassign blame before the Board meeting." },
+        { "id": "C", "title": "The Board Meeting", "setup": "God asks one simple question nobody can answer.", "action": "Rename 'Pending' to 'In Transition'; change the colour.", "payoff": "Button: the largest slice is souls still filling in the E-1." }
+      ],
+      "runningOrder": [
+        { "label": "Cold open", "startSec": 0, "endSec": 35 },
+        { "label": "Main titles", "startSec": 35, "endSec": 55 },
+        { "label": "Skit A", "startSec": 55, "endSec": 210 },
+        { "label": "Skit B", "startSec": 210, "endSec": 405 },
+        { "label": "Skit C", "startSec": 405, "endSec": 570 },
+        { "label": "Credits + button", "startSec": 570, "endSec": 600 }
+      ],
+      "socialCuts": [
+        { "platform": "reels", "label": "Rename Pending to In Transition", "inSec": 405, "outSec": 460, "lengthSec": 55, "caption": "The afterlife's stats don't add up and nobody will tell God.", "timingVerified": false }
+      ],
+      "video": null
+    }
+  ]
+}
