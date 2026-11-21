@@ -2,7 +2,9 @@
 
 **WANNATION MEDIA.** Vertical 9:16 cut-downs for TikTok, Instagram Reels, YouTube Shorts.
 
-> ⚠️ **ALL timings below are PROPOSED** — derived from the script running order, **not yet verified against a finished render.** Do not publish as "verified" until checked against the actual Episode 1 timeline. Every clip keeps the spinning WANNATION watermark and burned English captions.
+> **Episode 1 timings are VERIFIED** against the finished render (see below) and the clips are built.
+> **Episodes 2–6 timings remain PROPOSED** — derived from script outlines, not from any render.
+> Every clip keeps the spinning WANNATION watermark and burned English captions.
 
 ## Reframe & format rules
 - Source: 16:9 master → 9:16 safe-crop centred on the speaking character (reframe per shot).
@@ -12,18 +14,29 @@
 
 ---
 
-## EPISODE 1 — "THE QUEUE" (proposed cuts)
+## EPISODE 1 — "THE QUEUE" — ✅ VERIFIED against the finished render
 
-| Clip | In | Out | Length | Platform(s) | Hook caption |
-|---|---|---|---|---|---|
-| **CUT-1 "Take a ticket"** | 0:55 | 1:35 | ~40s | TikTok / Shorts | "Heaven is just Home Affairs with better signage 💀" |
-| **CUT-2 "The Viking at 046"** | 1:35 | 2:30 | ~55s | Reels / TikTok | "He's been in the queue since 862 AD and he's THRIVING" |
-| **CUT-3 "The Fast-Track scheme"** | 3:30 | 4:40 | ~70s | Reels | "Don't say Brenda's name in the queue 🤫" |
-| **CUT-4 "The Sultan wants the helmet"** | 4:40 | 5:30 | ~50s | TikTok / Shorts | "'The Sultan does not queue. The Sultan visits.'" |
-| **CUT-5 "Processing error" (twist)** | 6:45 | 7:50 | ~65s | Reels / TikTok | "I died to escape admin. Admin followed me." |
-| **CUT-6 "Gone to lunch" (button)** | 9:00 | 9:30 | ~30s | Shorts | "They finally called my number. Then this happened." |
+> These timings are **VERIFIED**: measured against `out/judgement-tales-s01e01-the-queue.mp4`
+> (600.00s / 14,400 frames / 1920x1080 / 24fps). Each clip below has been **rendered** as a
+> 1080x1920 file with burned English captions and the spinning WANNATION watermark.
 
-**Trailer (proposed, ~45s, all platforms + home-page feature):** cold-open death beat → "Take a ticket / 047" → Viking reveal → Sultan "does not queue" → Brenda thunderclap → "I died to escape admin" → title card **JUDGEMENT TALES — WANNATION MEDIA** → "Coming soon."
+| Clip | Slug | In | Out | Real length | Platform | Caption |
+|---|---|---|---|---|---|---|
+| **Take a ticket. For heaven.** | `take-a-ticket` | 1:12.36 | 1:45.26 | **32.92s** | TikTok (also Reels / Shorts) | Heaven runs on forms. #JudgementTales #animation #comedy #afterlife |
+| **He's been in the queue since 862 AD** | `eleven-hundred-years` | 2:00.93 | 2:29.67 | **28.75s** | Reels (also TikTok / Shorts) | Queue Member of the Century. Four times. #JudgementTales #animatedseries #comedy |
+| **The fast-track to the Complaints Department** | `the-fast-track` | 6:44.55 | 7:26.86 | **42.29s** | Shorts (also TikTok / Reels) | You skip the queue to reach the department that processes complaints about the queue. #JudgementTales |
+
+**Delivered files** (in Files / `out/`, not committed — see `.gitignore`):
+- `judgement-tales-s01e01-take-a-ticket-vertical.mp4`
+- `judgement-tales-s01e01-eleven-hundred-years-vertical.mp4`
+- `judgement-tales-s01e01-the-fast-track-vertical.mp4`
+- `judgement-tales-s01e01-trailer.mp4` — **trailer, 48.56s**, 1920x1080, soft English subtitle track
+
+**Trailer (VERIFIED, 48.56s):** "Take a ticket / for heaven" → "it has been forty-six
+for four hundred years" → Sven since 862 AD → "You want me to rob a Viking" → "It fast-tracks you straight
+to the Complaints Department" → "I died to escape admin… with better signage" → **JUDGEMENT TALES** title card.
+
+> Earlier proposed Episode-1 cuts (CUT-1…CUT-6, 0:55–9:30) are **superseded** by the verified table above.
 
 ---
 
