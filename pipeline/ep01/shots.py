@@ -35,7 +35,7 @@ SHOTS = {
  "complaints_wide": dict(p="P3", crop=(0,0,1536,864),  move="push_slow"),
  "sign_complaints": dict(p="P3", crop=(40,0,500,281),  move="drift_r"),
  "brenda_cu":   dict(p="P3", crop=(310,280,400,225),   move="push_micro"),
- "brenda_mid":  dict(p="P3", crop=(200,180,760,428),   move="push_slow"),
+ "brenda_mid":  dict(p="P3", crop=(140,200,680,383),   move="push_slow"),   # stops short of Moses' tablet
  "hr_mug":      dict(p="P3", crop=(150,610,340,191),   move="drift_r"),
  "moses_cu":    dict(p="P3", crop=(900,50,420,236),    move="push_micro"),
  "moses_mid":   dict(p="P3", crop=(800,30,620,349),    move="pull_slow"),
@@ -50,8 +50,12 @@ SHOTS = {
  "elevator":    dict(p="P4", crop=(760,30,480,270),    move="push_slow"),
  "alcove":      dict(p="P1", crop=(0,470,520,293),      move="drift_l"),
  # ---- Boardroom of the accused (P6) -------------------------------------
- "sven_cu":     dict(p="P6", crop=(30,215,380,214),    move="push_micro"),
- "sven_mid":    dict(p="P6", crop=(0,150,620,349),     move="drift_r"),
+ # Sven is cut out of plate 6, given his horned helmet, and staged in the reception queue
+ # (.work/cutout/stage_sven.py). These four are pre-built plates, not crops.
+ "sven_cu":     dict(p="PRE", crop=None, scene="P1", move="push_micro"),
+ "helmet_ins":  dict(p="PRE", crop=None, scene="P1", move="push_micro"),
+ "helmet_lift": dict(p="PRE", crop=None, scene="P1", move="static"),
+ "sven_mid":    dict(p="PRE", crop=None, scene="P1", move="push_slow"),
  "accused_wide":dict(p="P6", crop=(0,0,1536,864),      move="push_slow"),
  "moses_door":  dict(p="P6", crop=(1180,40,356,200),   move="push_micro"),
 }
@@ -66,4 +70,21 @@ def norm(c):
     if x+w > 1536: x = 1536-w
     return (max(0,x), max(0,y), w, h)
 
-for k,v in SHOTS.items(): v["crop"] = norm(v["crop"])
+for k,v in SHOTS.items():
+    if v["crop"]: v["crop"] = norm(v["crop"])
+    v.setdefault("scene", v["p"])
+
+# Whose face can be read in each framing. Drives the off-screen speaker labels in the default
+# caption track and the voice-to-face check. With no lip-sync anywhere, the face on screen is
+# the viewer's only cue for who is talking — so any line heard over a face that is not the
+# speaker's gets a name in the captions, and the cut list is checked for it.
+FACES={
+ 'lwazi_cu':{'LWAZI'},'lwazi_mid':{'LWAZI','CANDICE'},'lwazi_wide':{'LWAZI','CANDICE'},
+ 'peter_cu':{'PETER'},'peter_mid':{'PETER','LWAZI'},'two_pl':{'PETER','LWAZI'},'two_lc':{'LWAZI','CANDICE'},
+ 'candice_cu':{'CANDICE'},'queue_grp':{'CANDICE'},
+ 'recep_wide':{'PETER','LWAZI','CANDICE'},'recep_wide2':{'PETER','LWAZI','CANDICE'},
+ 'sven_cu':{'SVEN'},'sven_mid':{'LWAZI','SVEN'},'helmet_lift':{'SVEN'},
+ 'brenda_cu':{'BRENDA'},'brenda_mid':{'BRENDA'},'moses_cu':{'MOSES'},'moses_mid':{'MOSES'},
+ 'complaints_wide':{'BRENDA','MOSES'},
+ 'sultan_cu':{'SULTAN'},'sultan_mid':{'SULTAN'},'downstairs_wide':{'SULTAN','CANDICE'},'attendants':{'SULTAN'},
+}

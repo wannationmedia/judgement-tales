@@ -41,6 +41,19 @@ caption("coldtitle","THE LAST TUESDAY")
 caption("card_taxi","JOHANNESBURG","an ordinary Tuesday")
 caption("card_rail","THE GRAB RAIL","do not let go")
 caption("card_montage","THE FAVOUR ECONOMY","everybody owes somebody")
+# ---- cold-open voice-over, set as type (walkthrough F7: no silent black frames) ----
+def vo(name, lines, size=84):
+    a=["convert","-size",f"{W}x{H}","xc:#0d1829","-attenuate","0.55","+noise","Gaussian","-blur","0x0.7",
+       "(","-size",f"{W}x{H}","xc:black","-fill","white","-draw",f"ellipse {W//2},{H//2} 900,520 0,360",
+       "-blur","0x160",")","-compose","multiply","-composite",
+       "-font",SER,"-pointsize",str(size),"-fill",CREAM,"-gravity","center",
+       "-interline-spacing","18","-annotate","+0-20","\n".join(lines),
+       "-fill",GOLD,"-draw",f"rectangle {W//2-120},{H//2+len(lines)*62} {W//2+120},{H//2+len(lines)*62+4}"]
+    run(a+[f"{OUT}/{name}.png"])
+vo("vo1",["Tuesday. Half a data bundle left.","I was gonna fix my life on Wednesday."])
+vo("vo2",["And then I did the most dangerous thing","a man can do in this country."])
+vo("vo3",["I let go of the grab rail."],96)
+vo("vo4",["Eish."],150)
 # ---- whiteout ------------------------------------------------------------
 run(["convert","-size",f"{W}x{H}","xc:white","-attenuate","0.35","+noise","Gaussian",f"{OUT}/whiteout.png"])
 # ---- void (VO over black) ------------------------------------------------
@@ -71,6 +84,7 @@ def skit(name,label,title):
         ["-font",SANS,"-pointsize","34","-fill",GOLD,"-gravity","north","-annotate","+0+300",label,
          "-font",SER,"-pointsize","108","-fill",BRIGHT,"-annotate","+0+470",title,
          f"{OUT}/{name}.png"])
+skit("card_skitA","SKIT A","NOW SERVING: 047")
 skit("card_skitB","SKIT B","THE FAST-TRACK")
 skit("card_skitC","SKIT C","PROCESSING ERROR")
 # ---- credits -------------------------------------------------------------

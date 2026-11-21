@@ -7,6 +7,7 @@ W,H=2880,1620
 # Nigel is never seen: his alcove is treated as a silhouette.
 TREAT={"alcove":["-modulate","52,64,106","-blur","0x2.5","-brightness-contrast","-6x10"]}
 for name,s in SHOTS.items():
+    if s["p"]=="PRE": continue
     x,y,w,h=s["crop"]; src=f"{REPO}/{P[s['p']]}"; dst=f"{OUT}/{name}.png"
     cmd=["convert",src,"-crop",f"{w}x{h}+{x}+{y}","+repage"]
     cmd+=TREAT.get(name,[])

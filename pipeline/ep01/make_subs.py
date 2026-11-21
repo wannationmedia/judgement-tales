@@ -2,6 +2,7 @@
 """Stage 5 — English subtitles timed to the measured dialogue audio.
 Writes a clean dialogue track and an SDH track (speaker labels + sound cues)."""
 import json, re, os
+from shots import FACES
 ROOT="/home/user/judgement-tales/.work"
 L=json.load(open(f"{ROOT}/layout.json")); EV=L["events"]
 MAXLINE=42; MAXCUE=84; TAIL=0.35; MINCUE=0.9
@@ -49,11 +50,17 @@ def build(sdh):
         if e["kind"]=="line":
             txt=clean(e["sub"], keep_paren=sdh)
             if not txt: continue
-            if sdh: txt=f"{NAME.get(e['who'],e['who'])}: {txt}"
+            who=e['who'].replace('_VO','')
+            onscreen = (not e.get('card')) and who in FACES.get(e.get('shot') or '', set())
+            # SDH names everyone; the default track names a speaker whenever their face isn't on screen
+            if sdh or not onscreen: txt=f"{NAME.get(e['who'],e['who'])}: {txt}"
             nxt=next((x["start"] for x in EV[i+1:] if x["kind"]=="line"), 1e9)
             en=min(e["end"]+TAIL, nxt-0.08)
             en=max(en, e["start"]+MINCUE if e["start"]+MINCUE<nxt-0.08 else e["end"])
             cues+=split_cue(txt, e["start"], en)
+        elif e.get("ontext") and e["kind"]=="beat":
+            # words printed on screen that carry a joke are captioned in both tracks
+            cues.append((e["start"]+0.35, e["start"]+e.get("vdur",e["dur"])-0.1, f"SIGN: {e['ontext']}"))
         elif sdh and e.get("sub") and e["kind"] in ("beat","card"):
             txt=clean(e["sub"], keep_paren=True)
             if not txt: continue
