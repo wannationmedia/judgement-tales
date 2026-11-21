@@ -8,6 +8,37 @@ This report separates **production delivery** (what was actually rendered) from
 
 ---
 
+## ▶ v2 — CURRENT (2026-11-21): walkthrough fixes + YouTube and social launch kit
+
+A cognitive walkthrough of v1 passed **5 of 10** viewer steps. v2 fixes all seven findings and
+passes **10 of 10** acceptance criteria, measured on the file by `pipeline/ep01/verify_walkthrough.py`.
+
+| Finding (v1) | v2 |
+|---|---|
+| F1 8 of Nigel's lines heard over another character's face (no lip-sync → the face is the only speaker cue) | **0** — Nigel only on the dim counter or inserts; the default captions name him |
+| F2 The caper's horned helmet never appeared | Composited on Sven from his first shot; animated lift for the theft attempts |
+| F3 Sven sat in a boardroom | Cut out and staged in Heavenly Reception, incl. a two-shot with Lwazi |
+| F4 Punchline sign legible 1.5s | 5.0s, captioned |
+| F5 Moses cut into the reception | Coverage keyed by scene |
+| F6 "English (SDH)" | "English — speaker names & sounds" (now actually written to the file — v1's track names never landed; MP4 keeps `handler_name`, not `title`) |
+| F7 ~10s of black in the cold open | Opens on NOW SERVING 046; voice-over set as type; no black hold >1s |
+
+**Master v2:** `out/judgement-tales-s01e01-the-queue.mp4` — 600.00s, 1920×1080/24, H.264 High, ~14 Mbps,
+AAC 384 kbps, **−16.7 LUFS / −1.8 dBTP**, 212 cuts (2.72s avg), 2 embedded caption tracks + 4 sidecars.
+
+**YouTube kit** (`out/youtube/`): 3 thumbnails for Test & Compare, `title.txt`, `description.txt`
+(exact chapters), `tags.txt`, `UPLOAD.md` (settings, captions, end screen, disclosure advice).
+
+**Social kit** (`out/social/`): trailer 49.52s (16:9) + vertical 49.50s; five 9:16 clips —
+Take a ticket 33.00s · In line since 862 33.12s · The Sultan does not queue 35.17s ·
+The fast-track 43.04s · Gone to lunch 24.92s — with covers, plus key art (channel banner,
+profile mark, square/portrait posts, launch story). Plan and copy: `social/marketing-plan.md`.
+
+**Still open:** no lip-sync; SA accent not achieved (placeholder voices); **nobody has listened to
+the episode**; nothing uploaded; Ep 2 not started. The v1 figures below are kept for the record.
+
+---
+
 ## 1. Production delivery — ✅ DONE
 
 ### The pilot

@@ -8,15 +8,16 @@ VO=json.load(open(f"{ROOT}/vo_durations.json"))
 TARGET=600.0; AIR_LINE=1.35; MAXCUT=3.1
 
 # coverage pools per plate, for splitting a held beat into cuts
+# Coverage is keyed by the scene a shot belongs to, never by the image it was cut from:
+# a reception beat can only ever cut to reception set pieces (walkthrough finding F5).
 POOL={
  "P1":["recep_wide","queue_grp","gates","sign_recep","desk_papers","queue_deep",
        "two_pl","sign_good","recep_wide2","peter_mid","lwazi_mid","two_lc","stamp_ins"],
- "P3":["complaints_wide","sign_complaints","brenda_mid","hr_mug","moses_mid","tablet1","tablet2"],
+ "P3":["complaints_wide","sign_complaints","brenda_cu","hr_mug","moses_mid","tablet1","tablet2"],
  "P4":["downstairs_wide","sultan_mid","attendants","baklava","elevator"],
- "P6":["accused_wide","sven_mid","moses_door","sven_cu"],
 }
 def pool_for(shot):
-    return POOL.get(SHOTS[shot]["p"], ["recep_wide"]) if shot in SHOTS else POOL["P1"]
+    return POOL.get(SHOTS[shot]["scene"], POOL["P1"]) if shot in SHOTS else POOL["P1"]
 
 def split(shot, d, seed, prev):
     """Break a held beat into 1..n cuts of <=MAXCUT, rotating coverage."""
@@ -41,9 +42,14 @@ def build(bscale):
             t+=e["pre"]*AIR_LINE
             ev.append(dict(i=i,kind="line",who=e["who"],start=t,dur=d,end=t+d,
                            shot=e["shot"],sub=e["sub"],fx=e["fx"],seg=e["seg"],
-                           file=VO[str(i)]["file"],move=e.get("move")))
+                           file=VO[str(i)]["file"],move=e.get("move"),card=e.get("card")))
             if e["shot"]: prev=e["shot"]
             t+=d+e["post"]*AIR_LINE
+        elif e["ev"]=="beat" and e.get("hold"):
+            d=e["dur"]
+            ev.append(dict(i=i,kind="beat",start=t,dur=d,end=t+d,shot=e["shot"],sub=e.get("sub"),
+                           fx=e["fx"],seg=e["seg"],move=e.get("move"),ontext=e.get("ontext"),hold=True))
+            prev=e["shot"]; t+=d
         elif e["ev"]=="beat":
             total=e["dur"]*bscale
             for j,(s,d) in enumerate(split(e["shot"], total, i, prev)):

@@ -174,4 +174,13 @@ def sfx(name, dur=1.0):
             y=np.sin(2*np.pi*(1500+k*350)*x)*np.exp(-np.linspace(0,9,len(x)))*0.17
             o[s:s+len(y)]+=y[:max(0,len(o)-s)]
         return o
+    if name=="lift":
+        o=np.zeros(int(dur*SR))
+        x=t(0.45); up=np.sin(2*np.pi*np.cumsum(np.linspace(300,520,len(x)))/SR)*np.linspace(0,0.10,len(x))
+        s=int(0.15*SR); o[s:s+len(up)]+=up[:max(0,len(o)-s)]
+        x=t(0.9); clank=sum(np.sin(2*np.pi*f*x)*np.exp(-np.linspace(0,k,len(x)))*g
+                            for f,k,g in ((523,9,0.30),(1187,12,0.22),(1933,16,0.16),(2811,22,0.10)))
+        clank+=hp(noise(0.9),2500)*np.exp(-np.linspace(0,30,len(x)))*0.25
+        s=int(1.08*SR); o[s:s+len(clank)]+=clank[:max(0,len(o)-s)]
+        return o
     return np.zeros(int(dur*SR))

@@ -31,7 +31,10 @@ fc=(
 subprocess.run(["ffmpeg","-y","-v","error","-i",stitched,
   "-loop","1","-i",SCAN,"-loop","1","-i",LOGO,
   "-filter_complex",fc,"-map","[v]","-frames:v",str(int(600*FPS)),
-  "-c:v","libx264","-preset","medium","-crf","20","-pix_fmt","yuv420p",
+  # YouTube's recommended upload settings for 1080p24 SDR: H.264 High, progressive, 4:2:0,
+  # closed GOP of half the frame rate, 2 B-frames, ~8 Mbps or better, moov atom at the front.
+  "-c:v","libx264","-preset","medium","-crf","17","-maxrate","14M","-bufsize","28M",
+  "-profile:v","high","-g","12","-bf","2","-flags","+cgop","-pix_fmt","yuv420p",
   "-r",str(FPS),"-movflags","+faststart","-an",graded],check=True)
 print("graded ok")
 
@@ -39,9 +42,11 @@ master=f"{OUT}/judgement-tales-s01e01-the-queue.mp4"
 subprocess.run(["ffmpeg","-y","-v","error","-i",graded,"-i",f"{ROOT}/episode_audio.wav",
   "-i",f"{ROOT}/judgement-tales-s01e01.en.srt","-i",f"{ROOT}/judgement-tales-s01e01.en-sdh.srt",
   "-map","0:v:0","-map","1:a:0","-map","2:s:0","-map","3:s:0",
-  "-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000","-ac","2","-c:s","mov_text",
+  "-c:v","copy","-af","volume=-0.9dB","-c:a","aac","-b:a","384k","-ar","48000","-ac","2","-c:s","mov_text",
   "-metadata:s:s:0","language=eng","-metadata:s:s:0","title=English",
-  "-metadata:s:s:1","language=eng","-metadata:s:s:1","title=English (SDH)",
+  "-metadata:s:s:1","language=eng","-metadata:s:s:1","title=English — speaker names & sounds",
+  # MP4 drops `title` on subtitle streams; players show handler_name instead
+  "-metadata:s:s:0","handler_name=English","-metadata:s:s:1","handler_name=English — speaker names & sounds",
   "-metadata","title=JUDGEMENT TALES S01E01 - The Queue",
   "-metadata","artist=WANNATION MEDIA",
   "-metadata","copyright=WANNATION MEDIA - a division of WANNATION HOLDINGS (PTY) LTD - Reg No: 2026/463724/07",

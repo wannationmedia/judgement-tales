@@ -17,27 +17,37 @@ def seg(a_frag, b_frag, pre=0.6, post=0.9, nth_a=0, nth_b=0):
 
 CUTS={
  "take-a-ticket": dict(
-   platform=["TikTok","Reels","Shorts"],
+   platform=["TikTok","Reels","Shorts"], headline="HEAVEN HAS\nA QUEUE",
    title="Take a ticket. For heaven.",
    span=seg("Take a ticket.","It has been forty-six for four hundred years"),
-   caption="Heaven runs on forms. #JudgementTales #animation #comedy #afterlife"),
+   caption="Heaven runs on forms. 047 is waiting. #JudgementTales #animation #comedy #afterlife"),
  "eleven-hundred-years": dict(
-   platform=["TikTok","Reels","Shorts"],
+   platform=["TikTok","Reels","Shorts"], headline="IN LINE\nSINCE 862 AD",
    title="He's been in the queue since 862 AD",
-   span=seg("Do not. Skip. The queue.","Home Affairs has a franchise up here"),
+   span=seg("one guy in front of","Home Affairs has a franchise up here"),
    caption="Queue Member of the Century. Four times. #JudgementTales #animatedseries #comedy"),
  "the-fast-track": dict(
-   platform=["TikTok","Reels","Shorts"],
+   platform=["TikTok","Reels","Shorts"], headline="THE FAST-TRACK\nTO HEAVEN",
    title="The fast-track to the Complaints Department",
    span=seg("So it works?","I have heard this one before"),
    caption="You skip the queue to reach the department that processes complaints about the queue. #JudgementTales"),
+ "the-baklava": dict(
+   platform=["TikTok","Reels","Shorts"], headline="THE SULTAN\nDOES NOT QUEUE",
+   title="The Sultan does not queue",
+   span=seg("The Sultan does not","The baklava is"),
+   caption="He was promised a Fast-Track Pass. He got a baklava. #JudgementTales #animation #comedy"),
+ "gone-to-lunch": dict(
+   platform=["TikTok","Reels","Shorts"], headline="THEY FINALLY\nCALLED HIS NUMBER",
+   title="They finally called his number",
+   span=seg("They called you","Lunch is only a few hundred years"),
+   caption="Ticket 047. Called at last. Then this. #JudgementTales #animatedcomedy #afterlife"),
 }
 # trailer: the strongest beats, in order, plus the title card
 TRAILER=[
   seg("Take a ticket.","A ticket. For heaven.", pre=0.4, post=0.5),
   seg("It has been forty-six for four hundred years","It has been forty-six for four hundred years", pre=0.3, post=0.8),
   seg("I have held this position since","It was a good day", pre=0.3, post=0.6),
-  seg("You want me to rob a Viking","You want me to rob a Viking", pre=0.4, post=0.7),
+  seg("Sven's helmet.","You want me to rob a Viking", pre=0.4, post=0.7),
   seg("It fast-tracks you straight to the","It fast-tracks you straight to the", pre=0.4, post=1.0),
   seg("I died to escape admin","better signage", pre=0.4, post=0.9),
 ]

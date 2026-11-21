@@ -18,6 +18,7 @@ def move_expr(move, N):
     if move=="push_micro": return (f"z='1.02+0.055*on/{N}'",)+c
     if move=="pull_slow":  return (f"z='1.13-0.110*on/{N}'",)+c
     if move=="drift_r":    return ("z='1.075'", f"x='(iw-iw/zoom)*(0.08+0.84*on/{N})'", c[1])
+    if move=="static":     return ("z='1.0'","x='0'","y='0'")
     if move=="drift_l":    return ("z='1.075'", f"x='(iw-iw/zoom)*(0.92-0.84*on/{N})'", c[1])
     return (f"z='1.01+0.03*on/{N}'",)+c
 
@@ -25,7 +26,7 @@ def render(k, e):
     d=max(e.get("vdur",e["dur"]),0.12); N=max(int(round(d*FPS)),3); d=N/FPS
     out=f"{OUT}/{k:04d}.mp4"
     ins=[]; vf=[]; fc=None
-    if e["kind"]=="card" or (e["kind"]=="line" and not e.get("shot")):
+    if e["kind"]=="card" or (e["kind"]=="line" and (e.get("card") or not e.get("shot"))):
         card = e.get("card") or ("credits_roll" if e["seg"]=="credits" else "void")
         img=f"{CD}/{card}.png"
         ins=["-loop","1","-framerate",str(FPS),"-t",f"{d}","-i",img]
@@ -61,10 +62,18 @@ def render(k, e):
                 ins+=["-loop","1","-framerate",str(FPS),"-t",f"{d}","-i",f"{PR}/board_046.png"]
                 fc=(f"[0:v]{','.join(vf)}[bg];"
                     f"[bg][1:v]overlay=660:44:format=auto,setsar=1[v]")
+        elif "lift" in fxs:
+            hx,hy=open(f"{PR}/helmet_layer.pos").read().split()
+            ins+=["-loop","1","-framerate",str(FPS),"-t",f"{d}","-i",f"{PR}/helmet_layer.png"]
+            lift=("if(lt(t,0.15),0,if(lt(t,0.62),110*(t-0.15)/0.47,"
+                  "if(lt(t,1.0),110+6*sin(t*40),if(lt(t,1.09),110*(1-(t-1.0)/0.09),"
+                  "if(lt(t,1.25),-10*sin((t-1.09)*19.6),0)))))")
+            fc=(f"[0:v]{','.join(vf)}[bg];"
+                f"[bg][1:v]overlay={hx}:'{hy}-({lift})':format=auto,setsar=1[v]")
         elif "shutter" in fxs:
             ins+=["-loop","1","-framerate",str(FPS),"-t",f"{d}","-i",f"{PR}/lunch_sign.png"]
             fc=(f"[0:v]{','.join(vf)}[bg];"
-                f"[bg][1:v]overlay=510:'-340+min(640,640*(t/{d*0.45:.2f}))':format=auto,setsar=1[v]")
+                f"[bg][1:v]overlay=510:'-340+min(640,640*(t/0.35))':format=auto,setsar=1[v]")
     cmd=["ffmpeg","-y","-v","error"]+ins
     if fc: cmd+=["-filter_complex",fc,"-map","[v]"]
     else:  cmd+=["-vf",",".join(vf)+",setsar=1"]

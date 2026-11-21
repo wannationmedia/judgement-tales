@@ -30,7 +30,8 @@ skitC  =seg["C"][0]
 print(f"thunder cut at {thunder:.1f}s · muzak returns at {skitC:.1f}s")
 
 # ---- score --------------------------------------------------------------
-put(mus, synth.sfx("taxi", seg["cold"][1]-seg["cold"][0]), seg["cold"][0], 0.30)
+tx0=next(e["start"] for e in EV if e.get("card")=="coldtitle")   # the taxi starts after the heaven hook
+put(mus, synth.sfx("taxi", seg["cold"][1]-tx0), tx0, 0.30)
 put(mus, synth.harp_theme(6.5), seg["titles"][0]+0.2, 0.95)          # celestial…
 put(mus, synth.muzak(seg["titles"][1]-seg["titles"][0]-3.0), seg["titles"][0]+3.0, 0.85)  # …curdles
 beds=[(seg["A"][0], thunder), (skitC, seg["credits"][1])]            # muzak dies on the thunder

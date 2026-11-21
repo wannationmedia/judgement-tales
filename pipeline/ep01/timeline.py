@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # JUDGEMENT TALES S01E01 "THE QUEUE" — episode timeline.
 # ev: line|beat|card   txt = what the voice engine says   sub = what the subtitle shows
-def L(who, txt, sub=None, shot=None, pre=0.25, post=0.45, move=None, fx=None, seg=None):
+def L(who, txt, sub=None, shot=None, pre=0.25, post=0.45, move=None, fx=None, seg=None, card=None):
     return dict(ev="line", who=who, txt=txt, sub=sub if sub is not None else txt,
-                shot=shot, pre=pre, post=post, move=move, fx=fx or [], seg=seg)
-def B(dur, shot=None, move=None, fx=None, seg=None, sub=None):
-    return dict(ev="beat", dur=dur, shot=shot, move=move, fx=fx or [], seg=seg, sub=sub)
+                shot=shot, pre=pre, post=post, move=move, fx=fx or [], seg=seg, card=card)
+def B(dur, shot=None, move=None, fx=None, seg=None, sub=None, hold=False, ontext=None):
+    # hold=True: fixed length, never stretched or split. ontext: words printed on screen (captioned)
+    return dict(ev="beat", dur=dur, shot=shot, move=move, fx=fx or [], seg=seg, sub=sub, hold=hold, ontext=ontext)
 def C(card, dur, fx=None, seg=None, sub=None):
     return dict(ev="card", card=card, dur=dur, fx=fx or [], seg=seg, sub=sub)
 
@@ -13,20 +14,21 @@ TL = []
 # ===================== COLD OPEN — "THE LAST TUESDAY" =====================
 S="cold"
 TL += [
-  C("slate", 3.2, fx=["static"], seg=S),
+  B(3.2, shot="recep_wide", fx=["flip_none"], seg=S, hold=True, sub="[NOW SERVING 046]"),
+  C("slate", 2.8, fx=["static"], seg=S),
   C("coldtitle", 2.6, fx=["tick"], seg=S),
   L("LWAZI_VO","Tuesday. Half a data bundle left. I was gonna fix my life on Wednesday.",
     "Tuesday. Half a data bundle left. I was gonna fix my life on Wednesday.",
-    shot=None, pre=0.5, post=0.9, seg=S),
+    shot=None, pre=0.5, post=0.9, seg=S, card="vo1"),
   C("card_taxi", 2.2, fx=["taxi"], seg=S, sub="[minibus taxi rattling]"),
   L("LWAZI_VO","And then I did the most dangerous thing a man can do in this country.",
     "And then I did the most dangerous thing a man can do in this country.",
-    pre=0.2, post=0.8, seg=S),
+    pre=0.2, post=0.8, seg=S, card="vo2"),
   C("card_rail", 2.6, fx=["taxi"], seg=S, sub="[coins passed forward]"),
   L("LWAZI_VO","I let go of the grab rail.",
-    "I let go of the grab rail.", pre=0.15, post=0.55, seg=S),
+    "I let go of the grab rail.", pre=0.15, post=0.55, seg=S, card="vo3"),
   C("whiteout", 1.9, fx=["boop"], seg=S, sub="[boop]"),
-  L("LWAZI_VO","Aysh.","Eish.", pre=0.9, post=1.0, seg=S),
+  L("LWAZI_VO","Aysh.","Eish.", pre=0.9, post=1.0, seg=S, card="vo4"),
 ]
 # ===================== MAIN TITLES =====================
 S="titles"
@@ -37,6 +39,7 @@ TL += [
 # ===================== SKIT A — "NOW SERVING: 047" =====================
 S="A"
 TL += [
+  C("card_skitA", 2.4, fx=["sting"], seg=S, sub="SKIT A — NOW SERVING: 047"),
   B(3.4, shot="gates", fx=["muzak_in"], seg=S, sub="[elevator muzak]"),
   B(3.0, shot="recep_wide", seg=S),
   B(2.2, shot="sign_recep", seg=S),
@@ -59,7 +62,7 @@ TL += [
   B(2.4, shot="queue_deep", seg=S),
   L("LWAZI","Four hundred— okay but there's like one guy in front of—",
     "Four hundred— okay but there's like one guy in front of—",
-    shot="lwazi_mid", pre=0.3, post=0.2, seg=S),
+    shot="sven_mid", pre=0.3, post=0.2, seg=S),
   L("SVEN","Do not. Skip. The queue.","Do not. Skip. The queue.", shot="sven_cu", pre=0.15, post=0.7, seg=S),
   L("LWAZI","I'm not skipping, my broo, I'm asking—","I'm not skipping, my bru, I'm asking—",
     shot="lwazi_cu", pre=0.25, post=0.2, seg=S),
@@ -114,7 +117,7 @@ TL += [
     "I want to *know* what the Fast-Track is before I want it. That's just good sense.",
     shot="lwazi_cu", pre=0.3, post=0.5, seg=S),
   L("NIGEL","Smart. I like a cautious punter.","Smart. I like a cautious punter.",
-    shot="lwazi_cu", pre=0.25, post=0.4, seg=S),
+    shot="alcove", pre=0.25, post=0.4, seg=S),
   B(2.2, shot="pass_gold", fx=["shimmer"], seg=S, sub="[a glinting golden FAST-TRACK PASS]"),
   L("NIGEL","One of these. Skips the lot. Straight through the Pearlies.",
     "One of these. Skips the lot. Straight through the Pearlies.",
@@ -129,18 +132,18 @@ TL += [
   L("LWAZI","Course not.","Course not.", shot="lwazi_cu", pre=0.2, post=0.35, seg=S),
   L("NIGEL","It's a favour economy up here, innit. No money. God hates money, well documented.",
     "It's a *favour economy* up here, innit. No money. God hates money, well-documented.",
-    shot="recep_wide", pre=0.2, post=0.4, seg=S),
-  L("NIGEL","So we trade… good deeds.","So we trade… *good deeds.*", shot="queue_grp", pre=0.25, post=0.4, seg=S),
+    shot="gates", pre=0.2, post=0.4, seg=S),
+  L("NIGEL","So we trade… good deeds.","So we trade… *good deeds.*", shot="alcove", pre=0.25, post=0.4, seg=S),
   L("NIGEL","You do me a solid, I move the pass down the line, pass reaches you, you're golden. Literally.",
     "You do me a solid, I move the pass down the line, pass reaches you, you're golden. Literally.",
-    shot="queue_grp", pre=0.2, post=0.5, seg=S),
+    shot="pass_gold", pre=0.2, post=0.5, seg=S),
   L("LWAZI","And the solid is…?","And the solid is…?", shot="lwazi_cu", pre=0.3, post=0.6, seg=S),
-  L("NIGEL","Sven's helmet.","*(too casual)* Sven's helmet.", shot="sven_mid", pre=0.5, post=0.8, seg=S),
+  L("NIGEL","Sven's helmet.","*(too casual)* Sven's helmet.", shot="helmet_ins", pre=0.5, post=0.8, seg=S),
   L("LWAZI","You want me to rob a Viking.","You want me to rob a Viking.", shot="lwazi_cu", pre=0.5, post=0.6, seg=S),
-  L("NIGEL","Borrow.","Borrow.", shot="sven_cu", pre=0.3, post=0.5, seg=S),
+  L("NIGEL","Borrow.","Borrow.", shot="alcove", pre=0.3, post=0.5, seg=S),
   L("NIGEL","The Sultan downstairs wants it for the Potluck, the Sultan gives me a chit, chit goes to the harp lady on cloud nine,",
     "The Sultan downstairs wants it for the Potluck, the Sultan gives me a chit, chit goes to the harp lady on cloud nine,",
-    shot="downstairs_wide", pre=0.2, post=0.15, seg=S),
+    shot="baklava", pre=0.2, post=0.15, seg=S),
   L("NIGEL","harp lady owes the bloke who holds the pass, pass comes to you. Simple.",
     "harp lady owes the bloke who holds the pass, pass comes to you. *Simple.*",
     shot="elevator", pre=0.1, post=0.6, seg=S),
@@ -148,11 +151,11 @@ TL += [
   B(2.6, shot="downstairs_wide", fx=["fanfare"], seg=S, sub="[THE SULTAN sweeps in]"),
   L("SULTAN","The Sultan does not queue. The Sultan visits.","The Sultan does not *queue.* The Sultan *visits.*",
     shot="sultan_cu", pre=0.3, post=0.5, seg=S),
-  B(1.8, shot="attendants", seg=S),
+  B(1.8, shot="helmet_ins", seg=S, sub="[the Sultan spots the horned helmet]"),
   L("SULTAN","…The Sultan wants.","…The Sultan *wants.*", shot="sultan_cu", pre=0.3, post=0.8, seg=S),
   L("NIGEL","Your Magnificence. The helmet is as good as yours. My associate here—",
     "Your Magnificence. The helmet is as good as yours. My associate here—",
-    shot="sultan_mid", pre=0.3, post=0.15, seg=S),
+    shot="alcove", pre=0.3, post=0.15, seg=S),
   L("LWAZI","I'm not his associate.","I'm not his associate.", shot="lwazi_cu", pre=0.1, post=0.2, seg=S),
   L("NIGEL","—my colleague—","—my *colleague*—", shot="alcove", pre=0.1, post=0.2, seg=S),
   L("LWAZI","Also no.","Also no.", shot="lwazi_cu", pre=0.1, post=0.7, seg=S),
@@ -173,13 +176,13 @@ TL += [
     shot="baklava", pre=0.2, post=0.7, seg=S),
   # --- Snatch-style montage ---
   C("card_montage", 2.0, fx=["muzak_up"], seg=S, sub="[QUICK MONTAGE — the favour economy at work]"),
-  B(1.5, shot="sven_mid", fx=["tick"], seg=S),
-  B(1.3, shot="lwazi_cu", seg=S),
-  B(1.4, shot="sven_cu", seg=S),
-  B(1.3, shot="queue_grp", seg=S),
-  B(1.4, shot="candice_cu", seg=S),
-  B(1.3, shot="baklava", seg=S),
-  B(1.5, shot="accused_wide", seg=S),
+  B(2.2, shot="sven_mid", fx=["tick"], seg=S, hold=True),
+  B(1.9, shot="helmet_lift", fx=["lift"], seg=S, hold=True, sub="[the helmet lifts… and drops back]"),
+  B(1.6, shot="lwazi_cu", seg=S, hold=True),
+  B(1.9, shot="helmet_lift", fx=["lift"], seg=S, hold=True),
+  B(1.7, shot="candice_cu", seg=S, hold=True),
+  B(1.6, shot="baklava", seg=S, hold=True),
+  B(1.9, shot="helmet_lift", fx=["lift"], seg=S, hold=True),
   L("SVEN","…and in nine seventy four a man tried to skip. One man.",
     "…and in nine-seventy-four a man tried to skip. *One* man.",
     shot="sven_cu", pre=0.4, post=0.6, seg=S),
@@ -253,7 +256,8 @@ TL += [
     shot="sven_cu", pre=0.4, post=0.6, seg=S),
   L("LWAZI","…They called me?","…They called me?", shot="lwazi_cu", pre=0.3, post=0.6, seg=S),
   B(2.4, shot="two_pl", fx=["steps"], seg=S),
-  B(2.8, shot="peter_cu", fx=["shutter"], seg=S, sub="[GONE TO LUNCH — BACK IN ETERNITY]"),
+  B(4.4, shot="peter_cu", fx=["shutter"], seg=S, sub="[GONE TO LUNCH — BACK IN ETERNITY]", hold=True,
+    ontext="GONE TO LUNCH — BACK IN ETERNITY"),
   L("LWAZI","Of course.","Of course.", shot="lwazi_cu", pre=0.7, post=0.9, seg=S),
   L("SVEN","Lunch is only a few hundred years.","Lunch is only a few hundred years.",
     shot="sven_cu", pre=0.4, post=0.5, seg=S),
