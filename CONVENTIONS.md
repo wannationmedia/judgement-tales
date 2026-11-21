@@ -84,8 +84,52 @@ Every episode/clip shows a truthful state. Never label an unrendered, silent, or
 | `teaser` | A short clip exists (labelled by real duration); full episode not done. |
 | `released` | Full episode rendered, reviewed (runtime, voice, subtitle sync, credits) and playable. |
 
-**Current reality (2026-11-16):** All six = `script` (Ep 1 full, Ep 2–6 outlined). Ep 1 pilot = staged production, targeting `teaser` tonight. None are `released`.
+**Current reality (2026-11-21):** Ep 1 "The Queue" = **`released`** — a full 10:00 voiced, scored and
+subtitled pilot has been rendered and reviewed (runtime, audible dialogue, subtitle sync, readable credits,
+watermark all checked against the actual file). Ep 2–6 = `script`.
+
+`released` means *rendered and reviewed*, **not published**. Until `video.assetId` is non-null the episode
+is not on Lovable Assets and the site must not offer a player for it. See `PRODUCTION-NOTES.md`.
 
 ## 7. Data schema
 
 See `data/show-data.json`. Each episode: `slug`, `number`, `title`, `logline`, `synopsis`, `status`, `runtimeTargetSec`, `cast[]`, `artwork[]`, `skits[]` (`setup`/`action`/`payoff`/`dialogueRef`), `runningOrder[]` (`label`/`startSec`/`endSec`), `socialCuts[]` (`platform`/`inSec`/`outSec`/`lengthSec`/`caption`/`timingVerified`), `video` (optional, `assetId`/`subtitlesAssetId` — populated only when actually produced).
+
+
+---
+
+## 8. Episode build architecture (how an episode is actually produced)
+
+The pilot was produced entirely on CPU with open-source tooling — no GPU, no paid service.
+The full reproducible build is in `pipeline/ep01/`. Later episodes follow the same shape.
+
+**The order matters: audio first, picture second.** The episode's timing is derived from the
+*measured* duration of the synthesized dialogue, never from estimates. That is what makes
+subtitle sync correct by construction and lets the episode land on an exact runtime.
+
+1. **Cast** (`cast.py`) — one voice per character: model, speaker id, rate, pitch shift, EQ.
+   Cast to *measured* distinct pitches so characters never blur together.
+2. **Write the timeline** (`timeline.py`) — every line, beat and card. Two text fields per line:
+   `txt` (what the voice engine says, spelled phonetically — "zero four seven") and `sub`
+   (what the subtitle shows — "Zero-four-seven"). **Never let one serve both.**
+3. **Synthesize and measure** (`gen_voices.py`) — render each line, treat it, measure its real length.
+4. **Solve the layout** (`layout.py`) — place the measured audio and solve beat lengths so the
+   episode hits its exact target runtime. Held beats are **expanded into multiple cuts**, so the
+   extra time becomes fast cutting rather than a slideshow. Every cut holds until the next cut
+   starts, so dialogue pauses are covered.
+5. **Score** (`synth.py`, `build_audio.py`) — original music and effects synthesized from scratch
+   (no licensed or sampled material, ever), ducked under speech, normalised to ≈ −16 LUFS / −1 dBTP.
+6. **Frame** (`shots.py`, `prepare_plates.py`) — each framing is a **16:9 window onto an approved
+   scene plate**, upscaled for camera headroom. Coverage pools per plate drive the cutting.
+7. **Render** (`render_shots.py`) — a camera move on every cut, plus composited **practical props**
+   that play the script's gags. Build the gag as a prop, not as a caption.
+8. **Subtitle** (`make_subs.py`) — from the measured audio. Ship both a clean track and an SDH track.
+9. **Assemble** (`assemble.py`) — concat → retro grade → spinning watermark → mux audio + soft subs.
+10. **Repurpose** (`select_cuts.py`, `make_social.py`) — trailer and 9:16 cuts taken **from the
+    finished master**, snapped to real cut boundaries, labelled by their real durations.
+
+**Rules learned the hard way, do not repeat these:**
+- Never pass `-shortest` when muxing subtitles — it truncates the episode to the last cue.
+- Cap every render with `-t` / `-frames:v`; a looped image input otherwise never ends.
+- Check an overlay PNG actually has alpha before compositing it over the whole episode.
+- A camera move must cover the pause after a line, or the picture runs short of the audio.
