@@ -55,7 +55,7 @@ def vertical(key, meta, src=None, srt=None):
     src=src or MASTER
     a,b=meta["span"]; d=b-a
     sub=f"{TMP}/{key}.srt"
-    if srt: subprocess.run(["cp",srt,sub],check=True)
+    if srt and srt!=sub: subprocess.run(["cp",srt,sub],check=True)
     else: shifted_srt(a,b,sub)
     hl=f"{TMP}/{key}_headline.png"; headline_png(meta["headline"],hl)
     out=f"{OUT}/judgement-tales-s01e01-{key}-vertical.mp4"
@@ -121,6 +121,7 @@ def trailer():
     return out, real
 
 res={}
+ONLY_TV="--only-trailer-vertical" in sys.argv
 import sys
 if False:
     tf=f"{OUT}/judgement-tales-s01e01-trailer.mp4"

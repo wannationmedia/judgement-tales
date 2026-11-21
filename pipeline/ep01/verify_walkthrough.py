@@ -41,7 +41,7 @@ ok(6,sh['vdur']-0.35>=3.0 and cap,f"legible {sh['vdur']-0.35:.2f}s; captioned in
 # 7 — reception never cuts to another location
 ok(7,not p6,"off-location cuts in reception scenes: "+str(len(p6)))
 # 8 — plain-language caption track names in the master
-t=subprocess.run(["ffprobe","-v","error","-select_streams","s","-show_entries","stream_tags=title",
+t=subprocess.run(["ffprobe","-v","error","-select_streams","s","-show_entries","stream_tags=handler_name",
                   "-of","csv=p=0",M],capture_output=True,text=True).stdout.strip().splitlines()
 ok(8,"SDH" not in " ".join(t) and len(t)==2,f"tracks: {t}")
 # 9 — first 25s: no pure-black hold > 1.0s; the world on screen by 0:10

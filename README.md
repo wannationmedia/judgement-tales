@@ -19,17 +19,16 @@ Production deliverables for **JUDGEMENT TALES**, an adult satirical animated com
 | **`PRODUCTION-NOTES.md`** | **Delivery report for the Ep 1 pilot: measured specs, open gaps, what the site still needs** |
 | `pipeline/ep01/` | The reproducible CPU-only build that rendered the pilot (voice, score, picture) |
 | `social/premiere-plan.md` | YouTube Premiere run-of-show, promo cadence and repurposing plan |
+| `social/marketing-plan.md` | Launch kit, P−7…P+14 posting calendar, paste-ready copy per clip |
+| **`HANDOFF.md`** | **Current state for any agent (OpenCode, ChatGPT, Claude). Recompiled near every token limit** |
 
 ## Current production state (2026-11-21)
-- **Ep 1 "The Queue" — `released`:** a **full 10:00 voiced, scored, subtitled animated pilot has been
-  rendered and reviewed.** 600.00s / 1920x1080 / 24fps, 100 voiced lines, 2 embedded subtitle tracks,
-  spinning WANNATION watermark, legal credits. Plus a **48.56s trailer** and **three 9:16 social cuts**.
-  Read **[`PRODUCTION-NOTES.md`](PRODUCTION-NOTES.md)** for the measured specs, how it was made, and the
-  honest list of open gaps — including the fact that it has **no character lip-sync** and that the
-  **South African accent is not yet achieved** by the open-source voice set.
-- **Ep 2-6:** still `script` (Ep 2-6 outlined). Ep 2 "Orientation Day" is unblocked but not started.
-- **Nothing is uploaded.** `video.assetId` is `null` — the master is not on Lovable Assets or YouTube.
-  The site must gate its player on `assetId` being non-null.
+- **Ep 1 "The Queue" — v2 master rendered and verified (10/10 acceptance criteria).** Full 10:00,
+  voiced, scored, captioned. **YouTube upload kit** in `out/youtube/`, **social launch kit** (trailer,
+  five 9:16 clips, covers, key art) in `out/social/`. Details: **[`PRODUCTION-NOTES.md`](PRODUCTION-NOTES.md)**.
+- **Agents: start with [`HANDOFF.md`](HANDOFF.md).**
+- Open: no lip-sync; the South African accent is not achieved (placeholder voices); nobody has listened
+  to it yet; nothing is uploaded (`video.assetId` is null); Ep 2–6 are scripts/outlines.
 - Produced files live in `out/` (gitignored — no video binaries in the repo, per the brief).
 
 ## Source scene art

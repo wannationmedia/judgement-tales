@@ -4,7 +4,7 @@
 > token/context limit**, and before any handoff. Overwrite it with the current state; keep it
 > self-contained — the next agent gets this file and the repo, nothing else.
 
-**Last compiled:** 2026-11-21 21:34 · branch `claude/dazzling-bell-7lfk6a` · base `claude/amazing-hamilton-tq8zt4`
+**Last compiled:** 2026-11-21 22:07 · branch `claude/dazzling-bell-7lfk6a` · base `claude/amazing-hamilton-tq8zt4`
 (the repo has **no `main`** — the default branch is `claude/amazing-hamilton-tq8zt4`).
 
 ---
@@ -21,15 +21,12 @@ that **no agent here can reach**.
 
 | Item | State |
 |---|---|
-| Ep 1 pilot v1 (10:00, voiced, subtitled) | **Merged** — PR #1 |
-| Cognitive walkthrough of v1 | Done: 5/10 steps passed, 7 findings (F1–F7) |
-| **Fixes F1–F7 in the pipeline** | **Done** (in `.work/build/`, not yet copied to `pipeline/ep01/`) |
-| **v2 re-render** | **IN PROGRESS** — `.work/rebuild.sh` running in background; 95/212 clips at handoff |
-| YouTube package (`out/youtube/`) | Thumbnails A/B/C, `title.txt`, `description.txt` (with chapters), `tags.txt`, `chapters.json`, `UPLOAD.md` — **done** |
-| Key art (`out/social/key-art/`) | Channel banner, profile mark, square/portrait posts, launch story — **done** |
-| Social verticals + vertical trailer | **NOT built yet** — run after the master (step 4 below) |
-| `social/marketing-plan.md` | Written, uncommitted |
-| Docs/data/commit/PR for v2 | **Not done** |
+| Ep 1 pilot v1 | Merged (PR #1) |
+| **Ep 1 pilot v2** | **Rendered and verified — `verify_walkthrough.py` 10/10.** `out/judgement-tales-s01e01-the-queue.mp4`, 600.00s, −16.7 LUFS / −1.8 dBTP |
+| YouTube kit `out/youtube/` | **Done** — thumbnails A/B/C, title, description w/ chapters, tags, `UPLOAD.md` |
+| Social kit `out/social/` | **Done** — trailer 16:9 + 9:16, five 9:16 clips, covers, key art |
+| Data/docs | **Done** — show-data, cut sheets, PRODUCTION-NOTES, README, marketing plan |
+| PR #2 (draft, into `claude/amazing-hamilton-tq8zt4`) | Open — v2 pushed; awaiting the owner |
 
 ## 3. What v2 fixes (walkthrough findings)
 
@@ -45,40 +42,16 @@ that **no agent here can reach**.
 - Also: Skit A title card added; Brenda's wide crop no longer spoils Moses' tablets; helmet-lift gag animates the
   theft attempts in the Skit B montage.
 
-## 4. Exactly what to do next
+## 4. What's left (nothing blocking in this repo)
 
-```bash
-# 0. Is the render still going?  (rebuild = audio -> plates -> props -> 212 clips -> subs -> master)
-ls .work/clips | wc -l ; tail -3 .work/rebuild.log ; pgrep -f rebuild.sh
-# If it died: just re-run it (idempotent). ONLY ONE COPY AT A TIME — two copies race on the same files.
-bash .work/rebuild.sh > .work/rebuild.log 2>&1
-```
+1. **A human watches the master with sound** before anything is published. No agent can listen.
+2. Owner uploads per `out/youtube/UPLOAD.md`; posts per `social/marketing-plan.md`.
+3. After upload: paste asset IDs into `data/show-data.json` (`video.assetId`, `trailer.assetId`).
+4. Next production: **Episode 2 "Orientation Day"** — copy `pipeline/ep01` → `pipeline/ep02`, write a new
+   `timeline.py` from `scripts/episodes-02-06-outlines.md`, plates from `images/2.jpg`.
+5. Real fixes need outside resources: a GPU lip-sync stage; SA voice actors (or a fine-tuned SA voice).
 
-```bash
-# 1. Verify the master against the 10 acceptance criteria (must print 10/10)
-cd .work/build && python3 verify_walkthrough.py
-```
-
-```bash
-# 2. Look at frames yourself (helmet on Sven, sign readable, no black cold open)
-for t in 2 8 130 300 535; do ffmpeg -v error -ss $t -i ../../out/judgement-tales-s01e01-the-queue.mp4 -frames:v 1 /tmp/f$t.jpg -y; done
-```
-
-```bash
-# 3. Social: trailer (16:9), 5 verticals, vertical trailer, covers  -> out/social/
-python3 select_cuts.py && python3 make_social.py
-```
-
-```bash
-# 4. Copy the pipeline into the repo, including the Sven cutout tools
-cp .work/build/*.py pipeline/ep01/ ; mkdir -p pipeline/ep01/cutout ; cp .work/cutout/{make_sven.py,helmet.sh,stage_sven.py} pipeline/ep01/cutout/
-```
-
-5. Update `data/show-data.json` (ep1 `runningOrder` from `.work/cuts.json`, `socialCuts` from `.work/social_built.json`,
-   `trailer`), `social/cut-sheets.md`, `PRODUCTION-NOTES.md` (v2 + walkthrough result), `README.md`.
-6. Commit on `claude/dazzling-bell-7lfk6a`, push, open a **draft PR into `claude/amazing-hamilton-tq8zt4`**.
-   **No video/audio files in git** (`.gitignore` blocks them; `out/` and `.work/` are ignored).
-7. Prepend an entry to `/root/tasks/judgement-tales-pilot/LOGBOOK.md` (Baton), then recompile this file.
+Re-check the master any time: `cd .work/build && python3 verify_walkthrough.py` (expects 10/10).
 
 ## 4b. If you are on a FRESH CLONE (no `.work/`)
 
@@ -122,7 +95,10 @@ Tools: Piper TTS (`pip install piper-tts`, voices in `.work/voices/`), rembg, Nu
 - Every cut must hold through the pause after its line (`vdur`), or the picture runs short of the audio.
 - `gblur` at high sigma on 1080×1920 is ~50× slower than downscale → blur → upscale.
 - Timeline indices key the voice files: after inserting/removing events, re-run `gen_voices.py`.
-- Background jobs: check the *right* process name before concluding one died.
+- Background jobs: check the *right* process name before concluding one died — and never start a second copy.
+- MP4 drops a subtitle stream's `title`; players read `handler_name`. Set both.
+- AAC re-encode overshoots true peak: trim (`volume=-0.9dB`) before the encode.
+- A copy-onto-itself (`cp a a`) fails; guard it.
 
 ## 7. Honest open gaps (do not paper over)
 

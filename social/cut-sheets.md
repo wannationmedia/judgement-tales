@@ -14,29 +14,24 @@
 
 ---
 
-## EPISODE 1 — "THE QUEUE" — ✅ VERIFIED against the finished render
+## EPISODE 1 — "THE QUEUE" — ✅ VERIFIED against the v2 render
 
-> These timings are **VERIFIED**: measured against `out/judgement-tales-s01e01-the-queue.mp4`
-> (600.00s / 14,400 frames / 1920x1080 / 24fps). Each clip below has been **rendered** as a
-> 1080x1920 file with burned English captions and the spinning WANNATION watermark.
+> Measured against `out/judgement-tales-s01e01-the-queue.mp4` (v2, 600.00s). Every clip is **built**:
+> 1080×1920, headline in the first frame, burned captions placed above the platforms' bottom UI,
+> the master's spinning WANNATION watermark inside the video panel, and a 2.6s
+> "FULL EPISODE ON YOUTUBE" end card. All post to TikTok, Reels and Shorts. Covers in `out/social/covers/`.
 
-| Clip | Slug | In | Out | Real length | Platform | Caption |
-|---|---|---|---|---|---|---|
-| **Take a ticket. For heaven.** | `take-a-ticket` | 1:12.36 | 1:45.26 | **32.92s** | TikTok (also Reels / Shorts) | Heaven runs on forms. #JudgementTales #animation #comedy #afterlife |
-| **He's been in the queue since 862 AD** | `eleven-hundred-years` | 2:00.93 | 2:29.67 | **28.75s** | Reels (also TikTok / Shorts) | Queue Member of the Century. Four times. #JudgementTales #animatedseries #comedy |
-| **The fast-track to the Complaints Department** | `the-fast-track` | 6:44.55 | 7:26.86 | **42.29s** | Shorts (also TikTok / Reels) | You skip the queue to reach the department that processes complaints about the queue. #JudgementTales |
+| Clip | Headline (frame 0) | In | Out | Real length | Caption |
+|---|---|---|---|---|---|
+| **Take a ticket. For heaven.** | HEAVEN HAS A QUEUE | 1:18.85 | 1:51.86 | **33.00s** | Heaven runs on forms. 047 is waiting. #JudgementTales #animation #comedy #afterlife |
+| **He's been in the queue since 862 AD** | IN LINE SINCE 862 AD | 2:04.25 | 2:37.36 | **33.12s** | Queue Member of the Century. Four times. #JudgementTales #animatedseries #comedy |
+| **The fast-track to the Complaints Department** | THE FAST-TRACK TO HEAVEN | 6:43.45 | 7:26.51 | **43.04s** | You skip the queue to reach the department that processes complaints about the queue. #JudgementTales |
+| **The Sultan does not queue** | THE SULTAN DOES NOT QUEUE | 4:37.16 | 5:12.34 | **35.17s** | He was promised a Fast-Track Pass. He got a baklava. #JudgementTales #animation #comedy |
+| **They finally called his number** | THEY FINALLY CALLED HIS NUMBER | 8:40.25 | 9:05.17 | **24.92s** | Ticket 047. Called at last. Then this. #JudgementTales #animatedcomedy #afterlife |
 
-**Delivered files** (in Files / `out/`, not committed — see `.gitignore`):
-- `judgement-tales-s01e01-take-a-ticket-vertical.mp4`
-- `judgement-tales-s01e01-eleven-hundred-years-vertical.mp4`
-- `judgement-tales-s01e01-the-fast-track-vertical.mp4`
-- `judgement-tales-s01e01-trailer.mp4` — **trailer, 48.56s**, 1920x1080, soft English subtitle track
-
-**Trailer (VERIFIED, 48.56s):** "Take a ticket / for heaven" → "it has been forty-six
-for four hundred years" → Sven since 862 AD → "You want me to rob a Viking" → "It fast-tracks you straight
-to the Complaints Department" → "I died to escape admin… with better signage" → **JUDGEMENT TALES** title card.
-
-> Earlier proposed Episode-1 cuts (CUT-1…CUT-6, 0:55–9:30) are **superseded** by the verified table above.
+**Trailer:** `judgement-tales-s01e01-trailer.mp4` **49.52s** (16:9) and
+`…-trailer-vertical.mp4` **49.50s** (9:16).
+Posting order and copy: `marketing-plan.md`.
 
 ---
 

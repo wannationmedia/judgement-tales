@@ -42,9 +42,11 @@ master=f"{OUT}/judgement-tales-s01e01-the-queue.mp4"
 subprocess.run(["ffmpeg","-y","-v","error","-i",graded,"-i",f"{ROOT}/episode_audio.wav",
   "-i",f"{ROOT}/judgement-tales-s01e01.en.srt","-i",f"{ROOT}/judgement-tales-s01e01.en-sdh.srt",
   "-map","0:v:0","-map","1:a:0","-map","2:s:0","-map","3:s:0",
-  "-c:v","copy","-c:a","aac","-b:a","384k","-ar","48000","-ac","2","-c:s","mov_text",
+  "-c:v","copy","-af","volume=-0.9dB","-c:a","aac","-b:a","384k","-ar","48000","-ac","2","-c:s","mov_text",
   "-metadata:s:s:0","language=eng","-metadata:s:s:0","title=English",
   "-metadata:s:s:1","language=eng","-metadata:s:s:1","title=English — speaker names & sounds",
+  # MP4 drops `title` on subtitle streams; players show handler_name instead
+  "-metadata:s:s:0","handler_name=English","-metadata:s:s:1","handler_name=English — speaker names & sounds",
   "-metadata","title=JUDGEMENT TALES S01E01 - The Queue",
   "-metadata","artist=WANNATION MEDIA",
   "-metadata","copyright=WANNATION MEDIA - a division of WANNATION HOLDINGS (PTY) LTD - Reg No: 2026/463724/07",

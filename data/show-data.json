@@ -85,88 +85,115 @@
         {
           "label": "Cold open — The Last Tuesday",
           "startSec": 0.0,
-          "endSec": 24.64,
+          "endSec": 27.7,
           "timingVerified": true
         },
         {
           "label": "Main titles — WANNATION MEDIA card",
-          "startSec": 24.64,
-          "endSec": 42.64,
+          "startSec": 27.7,
+          "endSec": 45.7,
           "timingVerified": true
         },
         {
           "label": "Skit A — Now Serving: 047",
-          "startSec": 42.64,
-          "endSec": 197.11,
+          "startSec": 45.7,
+          "endSec": 206.21,
           "timingVerified": true
         },
         {
           "label": "Skit B — The Fast-Track",
-          "startSec": 197.11,
-          "endSec": 360.72,
+          "startSec": 206.21,
+          "endSec": 358.92,
           "timingVerified": true
         },
         {
           "label": "Skit C — Processing Error",
-          "startSec": 360.72,
-          "endSec": 568.97,
+          "startSec": 358.92,
+          "endSec": 569.0,
           "timingVerified": true
         },
         {
           "label": "Closing credits + button gag",
-          "startSec": 568.97,
+          "startSec": 569.0,
           "endSec": 600.0,
           "timingVerified": true
         }
       ],
       "socialCuts": [
         {
-          "platform": "tiktok",
+          "platform": "tiktok,reels,shorts",
           "label": "Take a ticket. For heaven.",
-          "inSec": 72.36,
-          "outSec": 105.26,
-          "lengthSec": 32.92,
-          "caption": "Heaven runs on forms. #JudgementTales #animation #comedy #afterlife",
+          "headline": "HEAVEN HAS A QUEUE",
+          "inSec": 78.85,
+          "outSec": 111.86,
+          "lengthSec": 33.0,
+          "caption": "Heaven runs on forms. 047 is waiting. #JudgementTales #animation #comedy #afterlife",
           "aspect": "9:16",
           "burnedCaptions": true,
+          "endCard": "FULL EPISODE ON YOUTUBE",
           "file": "judgement-tales-s01e01-take-a-ticket-vertical.mp4",
-          "timingVerified": true,
-          "alsoSuitableFor": [
-            "reels",
-            "shorts"
-          ]
+          "cover": "covers/take-a-ticket-cover.jpg",
+          "timingVerified": true
         },
         {
-          "platform": "reels",
+          "platform": "tiktok,reels,shorts",
           "label": "He's been in the queue since 862 AD",
-          "inSec": 120.93,
-          "outSec": 149.67,
-          "lengthSec": 28.75,
+          "headline": "IN LINE SINCE 862 AD",
+          "inSec": 124.25,
+          "outSec": 157.36,
+          "lengthSec": 33.12,
           "caption": "Queue Member of the Century. Four times. #JudgementTales #animatedseries #comedy",
           "aspect": "9:16",
           "burnedCaptions": true,
+          "endCard": "FULL EPISODE ON YOUTUBE",
           "file": "judgement-tales-s01e01-eleven-hundred-years-vertical.mp4",
-          "timingVerified": true,
-          "alsoSuitableFor": [
-            "tiktok",
-            "shorts"
-          ]
+          "cover": "covers/eleven-hundred-years-cover.jpg",
+          "timingVerified": true
         },
         {
-          "platform": "shorts",
+          "platform": "tiktok,reels,shorts",
           "label": "The fast-track to the Complaints Department",
-          "inSec": 404.55,
-          "outSec": 446.86,
-          "lengthSec": 42.29,
+          "headline": "THE FAST-TRACK TO HEAVEN",
+          "inSec": 403.45,
+          "outSec": 446.51,
+          "lengthSec": 43.04,
           "caption": "You skip the queue to reach the department that processes complaints about the queue. #JudgementTales",
           "aspect": "9:16",
           "burnedCaptions": true,
+          "endCard": "FULL EPISODE ON YOUTUBE",
           "file": "judgement-tales-s01e01-the-fast-track-vertical.mp4",
-          "timingVerified": true,
-          "alsoSuitableFor": [
-            "tiktok",
-            "reels"
-          ]
+          "cover": "covers/the-fast-track-cover.jpg",
+          "timingVerified": true
+        },
+        {
+          "platform": "tiktok,reels,shorts",
+          "label": "The Sultan does not queue",
+          "headline": "THE SULTAN DOES NOT QUEUE",
+          "inSec": 277.16,
+          "outSec": 312.34,
+          "lengthSec": 35.17,
+          "caption": "He was promised a Fast-Track Pass. He got a baklava. #JudgementTales #animation #comedy",
+          "aspect": "9:16",
+          "burnedCaptions": true,
+          "endCard": "FULL EPISODE ON YOUTUBE",
+          "file": "judgement-tales-s01e01-the-baklava-vertical.mp4",
+          "cover": "covers/the-baklava-cover.jpg",
+          "timingVerified": true
+        },
+        {
+          "platform": "tiktok,reels,shorts",
+          "label": "They finally called his number",
+          "headline": "THEY FINALLY CALLED HIS NUMBER",
+          "inSec": 520.25,
+          "outSec": 545.17,
+          "lengthSec": 24.92,
+          "caption": "Ticket 047. Called at last. Then this. #JudgementTales #animatedcomedy #afterlife",
+          "aspect": "9:16",
+          "burnedCaptions": true,
+          "endCard": "FULL EPISODE ON YOUTUBE",
+          "file": "judgement-tales-s01e01-gone-to-lunch-vertical.mp4",
+          "cover": "covers/gone-to-lunch-cover.jpg",
+          "timingVerified": true
         }
       ],
       "video": {
@@ -177,8 +204,8 @@
         "fps": 24,
         "durationSec": 600.0,
         "audio": "aac 48kHz stereo",
-        "loudnessLUFS": -15.8,
-        "truePeakDBTP": -1.0,
+        "loudnessLUFS": -16.7,
+        "truePeakDBTP": -1.8,
         "subtitleFiles": [
           "judgement-tales-s01e01.en.srt",
           "judgement-tales-s01e01.en.vtt",
@@ -187,27 +214,42 @@
         ],
         "embeddedSubtitleTracks": [
           "English",
-          "English (SDH)"
+          "English — speaker names & sounds"
         ],
         "watermark": "WANNATION logo, top-right, continuous 25s rotation, 66% opacity",
         "assetId": null,
         "subtitlesAssetId": null,
-        "animationTechnique": "limited/cutout animation: 219 cuts from approved scene plates with camera moves, composited practical props, retro broadcast grade. Not full character lip-sync animation.",
+        "animationTechnique": "limited/cutout animation: 212 cuts from approved scene plates, camera moves, composited props (flip board, lunch sign, golden pass, Sven's helmet incl. an animated lift), Sven cut out and staged in reception, retro broadcast grade. No lip-sync.",
         "delivery": {
           "masterRendered": true,
           "reviewed": true,
           "uploadedToLovableAssets": false,
           "uploadedToYouTube": false,
           "note": "Site must gate the player on video.assetId being non-null."
-        }
+        },
+        "version": "v2",
+        "bitrateMbps": 14.2,
+        "profile": "H.264 High, closed GOP 12, AAC-LC 384 kbps",
+        "cuts": 212,
+        "walkthrough": {
+          "v1": "5/10 steps passed",
+          "v2": "10/10 acceptance criteria met (pipeline/ep01/verify_walkthrough.py)"
+        },
+        "youtubeKit": "out/youtube/ (thumbnails A/B/C, title, description with chapters, tags, UPLOAD.md)"
       },
       "runtimeActualSec": 600.0,
       "trailer": {
         "file": "judgement-tales-s01e01-trailer.mp4",
-        "durationSec": 48.56,
+        "durationSec": 49.52,
         "aspect": "16:9",
         "assetId": null,
         "timingVerified": true
+      },
+      "trailerVertical": {
+        "file": "judgement-tales-s01e01-trailer-vertical.mp4",
+        "durationSec": 49.5,
+        "aspect": "9:16",
+        "assetId": null
       }
     },
     {
