@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Judgement Tales — Ep1 Proof — The Queue</title>
+<style>
+  html,body{margin:0;background:#101018;overflow:hidden}
+  #stage{width:1280px;height:720px;position:relative}
+  svg{display:block}
+  text{font-family:'Trebuchet MS','Verdana',sans-serif}
+</style>
+</head>
+<body>
+<div id="stage">
+<svg id="svg" width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe3ff"/><stop offset="1" stop-color="#eaf6ff"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3ead3"/><stop offset="1" stop-color="#e2d2ad"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d8c79a"/><stop offset="1" stop-color="#b79c63"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe489"/><stop offset="1" stop-color="#d9a825"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff6c8" stop-opacity="0.9"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0"/></filter>
+  </defs>
+
+  <!-- CAMERA ROOT -->
+  <g id="cam">
+    <!-- BACKGROUND -->
+    <rect x="-200" y="0" width="1700" height="420" fill="url(#wall)"/>
+    <rect x="-200" y="0" width="1700" height="120" fill="url(#sky)" opacity="0.5"/>
+    <!-- pearly columns -->
+    <g fill="#efe4c6" stroke="#cdb882" stroke-width="3">
+      <rect x="60" y="60" width="46" height="360" rx="8"/>
+      <rect x="1140" y="60" width="46" height="360" rx="8"/>
+      <rect x="600" y="60" width="40" height="360" rx="8" opacity="0.55"/>
+    </g>
+    <!-- clouds -->
+    <g fill="#ffffff" opacity="0.85" id="clouds">
+      <ellipse cx="260" cy="95" rx="70" ry="24"/><ellipse cx="320" cy="85" rx="55" ry="22"/>
+      <ellipse cx="930" cy="80" rx="80" ry="26"/><ellipse cx="1000" cy="92" rx="55" ry="20"/>
+    </g>
+    <!-- floor -->
+    <rect x="-200" y="420" width="1700" height="320" fill="url(#floor)"/>
+    <g stroke="#9c8css" stroke-width="0"></g>
+    <!-- floor tiles -->
+    <g stroke="#a98f55" stroke-width="2" opacity="0.5">
+      <line x1="-200" y1="470" x2="1500" y2="470"/>
+      <line x1="-200" y1="540" x2="1500" y2="540"/>
+      <line x1="-200" y1="630" x2="1500" y2="630"/>
+    </g>
+
+    <!-- SIGN -->
+    <g>
+      <rect x="430" y="40" width="420" height="70" rx="10" fill="#2b3a67"/>
+      <rect x="430" y="40" width="420" height="70" rx="10" fill="none" stroke="url(#gold)" stroke-width="4"/>
+      <text x="640" y="88" text-anchor="middle" fill="#ffe489" font-size="34" font-weight="bold" letter-spacing="2">HEAVENLY RECEPTION</text>
+    </g>
+
+    <!-- NOW SERVING board -->
+    <g transform="translate(980,150)">
+      <rect x="0" y="0" width="210" height="110" rx="10" fill="#1b1b22" stroke="url(#gold)" stroke-width="3"/>
+      <text x="105" y="34" text-anchor="middle" fill="#9fb0d0" font-size="18" letter-spacing="2">NOW SERVING</text>
+      <rect x="40" y="46" width="130" height="52" rx="6" fill="#000"/>
+      <text id="servingNum" x="105" y="88" text-anchor="middle" fill="#ff5a3c" font-size="46" font-weight="bold" font-family="Courier New,monospace">046</text>
+    </g>
+
+    <!-- RECEPTION DESK (right) -->
+    <g transform="translate(900,0)">
+      <rect x="0" y="430" width="300" height="180" rx="10" fill="#8a5a2b"/>
+      <rect x="0" y="430" width="300" height="30" rx="8" fill="#a76e35"/>
+      <rect x="-10" y="452" width="320" height="16" rx="6" fill="#6e4621"/>
+      <rect x="30" y="300" width="240" height="120" rx="8" fill="#3b4b78"/>
+      <text x="150" y="360" text-anchor="middle" fill="#ffe489" font-size="20" font-weight="bold">GOOD PEOPLE</text>
+      <text x="150" y="392" text-anchor="middle" fill="#ffe489" font-size="20" font-weight="bold">GO IN</text>
+    </g>
+
+    <!-- GOLD ROPE BARRIER along the queue -->
+    <g id="ropes" stroke="url(#gold)" stroke-width="6" fill="none" stroke-linecap="round">
+      <g fill="url(#gold)" stroke="none">
+        <rect x="300" y="470" width="12" height="110" rx="5"/><circle cx="306" cy="466" r="12"/>
+        <rect x="520" y="470" width="12" height="110" rx="5"/><circle cx="526" cy="466" r="12"/>
+        <rect x="760" y="470" width="12" height="110" rx="5"/><circle cx="766" cy="466" r="12"/>
+      </g>
+      <path d="M306,480 Q416,520 526,480" /><path d="M526,480 Q643,520 766,480"/>
+    </g>
+
+    <!-- ============ CHARACTERS ============ -->
+    <!-- ST PETER (behind desk) -->
+    <g id="peter"></g>
+    <!-- SVEN (the viking) -->
+    <g id="sven"></g>
+    <!-- LWAZI (hero) -->
+    <g id="lwazi"></g>
+  </g>
+
+  <!-- WANNATION spinning logo (screen-fixed, top-right) -->
+  <g id="logo" transform="translate(1200,70)">
+    <circle r="46" fill="#141423" stroke="url(#gold)" stroke-width="3"/>
+    <g id="logospin">
+      <path d="M-30,-6 L-14,20 L0,-18 L14,20 L30,-6" fill="none" stroke="#ffe489" stroke-width="6" stroke-linjoin="round" stroke-linecap="round"/>
+    </g>
+    <text y="34" text-anchor="middle" fill="#9fb0d0" font-size="9" letter-spacing="2">WANNATION</text>
+  </g>
+
+  <!-- SUBTITLE lower third -->
+  <g id="subs" opacity="0">
+    <rect x="140" y="628" width="1000" height="74" rx="12" fill="#000" opacity="0.62"/>
+    <text id="subname" x="160" y="652" fill="#ffe489" font-size="17" font-weight="bold"></text>
+    <text id="subtext" x="640" y="682" text-anchor="middle" fill="#fff" font-size="26" font-weight="bold"></text>
+  </g>
+
+  <rect x="0" y="0" width="1280" height="720" filter="url(#grain)" opacity="0.5" pointer-events="none"/>
+  <rect id="fade" x="0" y="0" width="1280" height="720" fill="#000" opacity="1"/>
+</svg>
+</div>
+
+<script>
+// ---------- tiny timeline helpers ----------
+const easeInOut = t => t<0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+// interpolate over keyframes [[time,val],...] at time t (seconds), eased
+function track(keys,t){
+  if(t<=keys[0][0]) return keys[0][1];
+  for(let i=0;i<keys.length-1;i++){
+    const [t0,v0]=keys[i],[t1,v1]=keys[i+1];
+    if(t>=t0&&t<=t1){const k=easeInOut((t-t0)/(t1-t0||1));return v0+(v1-v0)*k;}
+  }
+  return keys[keys.length-1][1];
+}
+const S=id=>document.getElementById(id);
+
+// ---------- character builder (flat vector cartoon) ----------
+function limb(x1,y1,x2,y2,w,col){return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`}
+
+// Draw a generic character. pose: {skin,hair,...} handled per character via builders below.
+function head(cx,cy,r,skin,stroke){
+  return `<ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*1.08}" fill="${skin}" stroke="${stroke}" stroke-width="3"/>`;
+}
+function eye(cx,cy,blink,look){
+  const ry = 9*clamp(1-blink,0.08,1);
+  return `<g><ellipse cx="${cx}" cy="${cy}" rx="8" ry="${ry}" fill="#fff" stroke="#222" stroke-width="2"/>`+
+         (blink<0.6?`<circle cx="${cx+look}" cy="${cy}" r="3.4" fill="#222"/>`:``)+`</g>`;
+}
+function mouth(cx,cy,open,smile){
+  const h = 2+open*16;
+  const w = 16+smile*10;
+  return `<path d="M${cx-w},${cy} Q${cx},${cy+h+smile*8} ${cx+w},${cy}" fill="#5a1d1d" stroke="#222" stroke-width="2.5"/>`+
+         (open>0.25?`<rect x="${cx-w*0.6}" y="${cy-1}" width="${w*1.2}" height="3" fill="#fff"/>`:``);
+}
+
+function drawLwazi(p){
+  // p: x, baseY, lean, armR(0..1 raise), mouthOpen, blink, bob, look
+  const g=S('lwazi'); const x=p.x, y=p.baseY+ (p.bob||0);
+  const skin="#7a4a25";
+  const hx=x, hy=y-150;
+  const arm = -0.3 - p.armR*1.4; // radians
+  g.innerHTML=`
+   <g transform="rotate(${p.lean||0} ${x} ${y})">
+    ${limb(x-16,y-10,x-26+ (p.step||0),y+70,16,"#22303a")}  <!-- legs -->
+    ${limb(x+16,y-10,x+26-(p.step||0),y+70,16,"#22303a")}
+    <rect x="${x-34}" y="${y-110}" width="68" height="108" rx="26" fill="#2fae5a" stroke="#1d7a3c" stroke-width="3"/>
+    <rect x="${x-40}" y="${y-116}" width="80" height="30" rx="14" fill="#36c267"/>  <!-- hood collar -->
+    <rect x="${x+8}" y="${y-150}" width="40" height="70" rx="16" fill="#6b4a9c" transform="rotate(${18+p.armR*4} ${x+20} ${y-120})"/> <!-- backpack strap hint -->
+    ${limb(x-28,y-96,x-44+Math.cos(arm)*6,y-96+Math.sin(arm)*54+p.armR*-40,15,skin)} <!-- L arm (gestures) -->
+    ${limb(x+28,y-96,x+46,y-34,15,"#2fae5a")} <!-- R arm rest -->
+    <!-- head -->
+    <g>
+      ${head(hx,hy,32,skin,"#4d2d13")}
+      <path d="M${hx-30},${hy-14} Q${hx},${hy-42} ${hx+30},${hy-14} L${hx+28},${hy-6} Q${hx},${hy-26} ${hx-28},${hy-6} Z" fill="#1a1a1a"/>
+      ${eye(hx-12,hy-4,p.blink,p.look||0)} ${eye(hx+12,hy-4,p.blink,p.look||0)}
+      <path d="M${hx-18},${hy-16} q6,-5 12,-1" stroke="#1a1a1a" stroke-width="3" fill="none"/>
+      <path d="M${hx+6},${hy-17} q6,-4 12,1" stroke="#1a1a1a" stroke-width="3" fill="none"/>
+      ${mouth(hx,hy+16,p.mouthOpen,0.1)}
+    </g>
+    <!-- ticket 047 -->
+    ${p.ticket?`<g transform="translate(${x-46+Math.cos(arm)*6},${y-96+Math.sin(arm)*54+p.armR*-40})"><rect x="-22" y="-14" width="44" height="28" rx="4" fill="#fff" stroke="#c9a227" stroke-width="2" transform="rotate(-12)"/><text x="0" y="6" text-anchor="middle" font-size="16" font-weight="bold" fill="#2b3a67" transform="rotate(-12)">047</text></g>`:``}
+   </g>`;
+}
+
+function drawPeter(p){
+  const g=S('peter'); const x=1035, y=560;
+  const skin="#e8c6a0"; const hx=x, hy=y-150-(p.bob||0);
+  g.innerHTML=`
+    <g>
+      <ellipse cx="${hx}" cy="${hy-40}" rx="40" ry="20" fill="url(#halo)"/>
+      <path d="M${x-44},${y} L${x-30},${y-120} Q${x},${y-150} ${x+30},${y-120} L${x+44},${y} Z" fill="#d9dce6" stroke="#aab0c4" stroke-width="3"/>
+      ${limb(x-30,y-108,x-54,y-70-(p.stampY||0),14,"#d9dce6")} <!-- stamp arm -->
+      <rect x="${x-62}" y="${y-78-(p.stampY||0)}" width="20" height="18" rx="3" fill="#6e4621"/> <!-- stamp -->
+      ${limb(x+30,y-108,x+52,y-66,14,"#d9dce6")}
+      ${head(hx,hy,30,skin,"#b98d63")}
+      <path d="M${hx-30},${hy-6} Q${hx-34},${hy-38} ${hx},${hy-40} Q${hx+34},${hy-38} ${hx+30},${hy-6} L${hx+24},${hy-14} Q${hx},${hy-30} ${hx-24},${hy-14} Z" fill="#eceff5"/>
+      ${eye(hx-11,hy-2,p.blink,0)} ${eye(hx+11,hy-2,p.blink,0)}
+      <path d="M${hx-20},${hy+6} Q${hx},${hy+30} ${hx+20},${hy+6}" fill="#eceff5" stroke="#cfd4e0" stroke-width="2"/> <!-- beard -->
+      ${mouth(hx,hy+14,p.mouthOpen,-0.2)}
+    </g>`;
+}
+
+function drawSven(p){
+  const g=S('sven'); const x=620, y=560;
+  const skin="#edc39a"; const hx=x, hy=y-152;
+  const armFold = p.turn<0.5; // folded until he turns
+  g.innerHTML=`
+   <g transform="rotate(${(p.turn||0)*-6} ${x} ${y})">
+    ${limb(x-16,y-10,x-22,y+66,17,"#5b4636")} ${limb(x+16,y-10,x+22,y+66,17,"#5b4636")}
+    <rect x="${x-40}" y="${y-116}" width="80" height="116" rx="22" fill="#9a4b2e" stroke="#6e3420" stroke-width="3"/>
+    <rect x="${x-40}" y="${y-70}" width="80" height="18" fill="#6e3420"/>  <!-- belt -->
+    ${armFold
+      ? `${limb(x-30,y-90,x+14,y-64,16,skin)}${limb(x+30,y-90,x-14,y-64,16,skin)}` // arms folded
+      : `${limb(x-30,y-90,x-48,y-30,16,skin)}${limb(x+30,y-90,x+48,y-40-(p.card?20:0),16,skin)}`}
+    <!-- head + beard + helmet -->
+    <g>
+      ${head(hx,hy,33,skin,"#b5885c")}
+      <path d="M${hx-30},${hy+6} Q${hx},${hy+70} ${hx+30},${hy+6} Q${hx+20},${hy+40} ${hx},${hy+44} Q${hx-20},${hy+40} ${hx-30},${hy+6}Z" fill="#c8a15f" stroke="#9c7636" stroke-width="2"/> <!-- blonde beard -->
+      ${eye(hx-12,hy-6,p.blink,p.look||0)} ${eye(hx+12,hy-6,p.blink,p.look||0)}
+      <path d="M${hx-20},${hy-18} q7,-6 13,0" stroke="#9c7636" stroke-width="3" fill="none"/>
+      <path d="M${hx+7},${hy-18} q7,-6 13,0" stroke="#9c7636" stroke-width="3" fill="none"/>
+      ${mouth(hx,hy+8,p.mouthOpen,p.smile||0)}
+      <!-- helmet -->
+      <path d="M${hx-34},${hy-14} Q${hx},${hy-54} ${hx+34},${hy-14} L${hx+30},${hy-6} Q${hx},${hy-30} ${hx-30},${hy-6} Z" fill="#8f98a8" stroke="#5f6675" stroke-width="3"/>
+      <path d="M${hx-30},${hy-20} q-26,-10 -34,-34 q22,4 34,22Z" fill="#e8e3d0" stroke="#b9b089" stroke-width="2"/>
+      <path d="M${hx+30},${hy-20} q26,-10 34,-34 q-22,4 -34,22Z" fill="#e8e3d0" stroke="#b9b089" stroke-width="2"/>
+      <!-- single proud tear -->
+      ${p.tear?`<circle cx="${hx+13}" cy="${hy+6+ p.tear*14}" r="3.5" fill="#8fd3ff" opacity="${clamp(p.tear,0,1)}"/>`:``}
+    </g>
+    <!-- laminated card -->
+    ${p.card?`<g transform="translate(${x+52},${y-56})"><rect x="-26" y="-16" width="52" height="34" rx="4" fill="#fff" stroke="#2b3a67" stroke-width="2"/><text x="0" y="-2" text-anchor="middle" font-size="8" fill="#2b3a67" font-weight="bold">QUEUE MEMBER</text><text x="0" y="10" text-anchor="middle" font-size="7" fill="#c9a227" font-weight="bold">OF THE CENTURY</text></g>`:``}
+   </g>`;
+}
+
+// ---------- flap mouth from a speaker over an interval ----------
+function flap(t,start,end){
+  if(t<start||t>end) return 0;
+  // deterministic pseudo-syllable flap
+  const f = Math.abs(Math.sin(t*22))*0.6 + Math.abs(Math.sin(t*9.3))*0.4;
+  return clamp(f,0,1);
+}
+const blinkAt=(t,times)=>{let b=0;for(const bt of times){const d=t-bt;if(d>0&&d<0.16)b=Math.max(b,1-Math.abs(d-0.08)/0.08);}return b;}
+
+// ---------- SUBTITLES ----------
+const LINES=[
+ [2.2,5.0,"LWAZI","…Sharp. Okay. So this is— yoh. I'm not even mad."],
+ [5.1,6.9,"ST. PETER","Take a ticket."],
+ [7.0,8.9,"LWAZI","A ticket. For heaven."],
+ [9.0,11.3,"ST. PETER","One does not simply walk into eternity. Zero-four-seven."],
+ [11.4,13.4,"LWAZI","And you're serving…? / Forty-six."],
+ [13.5,16.0,"NARRATION","It has been 46 for four hundred years."],
+ [16.1,18.4,"SVEN","Do not. Skip. The queue."],
+ [18.5,20.9,"LWAZI","I'm not skipping, my bru, I'm asking—"],
+ [21.0,23.8,"SVEN","I am very good at it. Four times."],
+];
+function subAt(t){for(const l of LINES){if(t>=l[0]&&t<=l[1])return l;}return null;}
+
+// ---------- MASTER RENDER ----------
+const DUR=24.0; // seconds
+function renderAt(tt){
+  const t=clamp(tt,0,DUR);
+
+  // camera: subtle push + pan following Lwazi's two positions
+  const camX = track([[0,0],[2,0],[13,-30],[16,-55],[18,-55],[24,-55]],t);
+  const camS = track([[0,1.0],[2,1.03],[9,1.05],[13,1.02],[24,1.02]],t);
+  S('cam').setAttribute('transform',`translate(${camX} 0) scale(${camS})`);
+
+  // board flips 046 -> stays (comedic)
+  S('servingNum').textContent = (t>0.6? "046":"045");
+
+  // logo spin
+  S('logospin').setAttribute('transform',`rotate(${(t*18)%360})`);
+  // clouds drift
+  S('clouds').setAttribute('transform',`translate(${(t*6)%60-30} 0)`);
+
+  // ---- LWAZI ----
+  const lx = track([[0,-160],[0.5,-160],[2.4,770],[13.0,770],[13.4,770],[16.0,430],[24,430]],t);
+  const walking = (t<2.4)|| (t>13.0&&t<16.0);
+  const bob = walking? Math.sin(t*16)*5 : Math.sin(t*2.2)*1.5;
+  const step = walking? Math.sin(t*16)*14 : 0;
+  const lMouth = flap(t,2.2,5.0)||flap(t,7.0,8.9)||flap(t,11.4,12.4)||flap(t,18.5,20.9);
+  drawLwazi({
+    x:lx, baseY:560, bob, step,
+    lean: track([[0,-8],[2.4,-8],[3.0,0],[24,0]],t), // still leaning from taxi, then straightens
+    armR: Math.max(flap(t,2.2,5.0)*0.5, (t>11.4&&t<12.6?0.6:0), (t>18.5&&t<20.9?0.5:0)),
+    mouthOpen:lMouth, blink:blinkAt(t,[3.2,6.4,9.8,14.5,19.5,22.5]),
+    look: (t>13&&t<21?4:0), ticket:(t>9.6)
+  });
+
+  // ---- ST PETER ----
+  drawPeter({
+    bob:Math.sin(t*2)*1.2,
+    stampY: (Math.sin(t*9)>0.6 && t<9.5)?8:0,
+    mouthOpen: flap(t,5.1,6.9)||flap(t,9.0,11.3),
+    blink:blinkAt(t,[4.0,8.0,12.0,17.0])
+  });
+
+  // ---- SVEN ----
+  drawSven({
+    turn: track([[0,0],[18.4,0],[19.4,1],[24,1]],t), // turns to beam
+    mouthOpen: flap(t,16.1,18.4)||flap(t,21.0,23.8),
+    smile: track([[0,0],[19.0,0],[20.2,0.9],[24,0.9]],t),
+    tear: track([[0,0],[20.4,0],[21.4,1],[23.5,1],[24,0]],t),
+    card: (t>21.6), look:(t>19?-3:0),
+    blink:blinkAt(t,[5.0,10.5,15.5,20.0])
+  });
+
+  // ---- SUBTITLES ----
+  const l=subAt(t);
+  if(l){S('subs').setAttribute('opacity',1);S('subname').textContent=l[2];S('subtext').textContent=l[3];}
+  else S('subs').setAttribute('opacity',0);
+
+  // ---- FADE in/out ----
+  const fade = track([[0,1],[0.8,0],[22.8,0],[24,1]],t);
+  S('fade').setAttribute('opacity',fade);
+}
+window.renderAt=renderAt; window.DUR=DUR;
+renderAt(0);
+</script>
+</body>
+</html>
